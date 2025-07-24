@@ -24,11 +24,10 @@ export default function SignIn() {
   console.log('Current loginMethod:', loginMethod);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center px-6 py-12">
-      <div className="w-full max-w-md mx-auto">
-        {/* Logo and Header */}
-        <div className="text-center mb-10">
-          <Logo size="md" className="mx-auto mb-8" />
+    <div className="min-h-screen flex flex-col justify-center px-6 py-12 pt-32">
+      <div className="w-full max-w-xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
           <h1 className="text-3xl font-extralight text-domeo-black tracking-[-0.02em]">
             Welcome back
           </h1>
@@ -133,10 +132,7 @@ export default function SignIn() {
             </label>
           </div>
 
-          {/* Debug Info */}
-          <div className="mb-4 p-2 bg-gray-100 rounded text-xs">
-            Current method: {loginMethod}
-          </div>
+
 
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -243,19 +239,67 @@ export default function SignIn() {
             Claim your founding membership
           </Link>
         </p>
-
-        {/* Footer */}
-        <p className="text-center text-xs text-domeo-gray-500 mt-6">
-          By signing in, you agree to our{' '}
-          <Link href="/terms" className="text-domeo-accent hover:underline">
-            Terms of Service
-          </Link>{' '}
-          and{' '}
-          <Link href="/privacy" className="text-domeo-accent hover:underline">
-            Privacy Policy
-          </Link>
-        </p>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-domeo-gray-100 py-20 mt-16">
+        <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
+              <div>
+                <Logo theme="dark" size="sm" className="mb-6" />
+                <p className="text-[13px] text-domeo-gray-500 leading-relaxed">
+                  One profile. Five communities.<br />
+                  Endless authentic connections.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Product</h4>
+                <ul className="space-y-3">
+                  {['How It Works', 'The Domes', 'Pricing', 'Success Stories'].map(item => (
+                    <li key={item}>
+                      <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Company</h4>
+                <ul className="space-y-3">
+                  {['About Us', 'Careers', 'Press', 'Blog'].map(item => (
+                    <li key={item}>
+                      <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Trust & Safety</h4>
+                <ul className="space-y-3">
+                  {['Safety Center', 'Community Guidelines', 'Privacy Policy', 'Terms of Service'].map(item => (
+                    <li key={item}>
+                      <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            
+            <div className="border-t border-domeo-gray-100 mt-16 pt-8">
+              <p className="text-[11px] text-domeo-gray-400 text-center tracking-wider uppercase">
+                © 2024 Domeo. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </footer>
     </div>
   );
 } 
