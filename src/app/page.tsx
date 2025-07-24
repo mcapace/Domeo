@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Logo from '@/components/Logo';
 import { cn } from '@/lib/utils';
+import { TrustIcons, DomeIcons } from '@/components/DomeIcons';
 
 export default function Home() {
   useEffect(() => {
@@ -26,11 +27,11 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center px-6 md:px-12 pt-32 md:pt-40 pb-16 md:pb-20 overflow-hidden">
-        {/* Ultra-subtle background */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/3 -left-96 w-[800px] h-[800px] bg-pink-200/[0.08] rounded-full filter blur-[150px]"></div>
-          <div className="absolute bottom-1/3 -right-96 w-[800px] h-[800px] bg-purple-200/[0.08] rounded-full filter blur-[150px]"></div>
+      <section className="relative min-h-[90vh] flex items-center justify-center px-6 pt-40 pb-20 bg-domeo-gray-50">
+        {/* Subtle geometric background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] border border-domeo-gray-200/20 rounded-full"></div>
+          <div className="absolute bottom-0 left-0 w-[800px] h-[800px] border border-domeo-gray-200/20 rounded-full translate-x-[-50%] translate-y-[50%]"></div>
         </div>
         
         <div className="w-full max-w-5xl mx-auto text-center relative z-10">
@@ -38,77 +39,79 @@ export default function Home() {
             <Logo size="xl" className="mx-auto" linkToHome={false} />
           </div>
           
-          <h1 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[7rem] 2xl:text-[8rem] font-extralight text-gray-900 tracking-[-0.04em] leading-[0.85] mb-8 md:mb-12 opacity-0 animate-fade-up animate-delay-200">
+          <h1 className="text-[3.5rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[8rem] font-extralight text-domeo-black tracking-[-0.04em] leading-[0.85] mb-12 opacity-0 animate-fade-up animate-delay-200">
             Your Domes<br />
-            <span className="font-light bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-block bg-[length:200%_auto] animate-gradient">
+            <span className="font-light text-domeo-charcoal">
               Await
             </span>
           </h1>
           
-          <p className="text-[16px] sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] text-gray-600 font-light max-w-3xl mx-auto mb-12 md:mb-16 leading-[1.5] opacity-0 animate-fade-up animate-delay-400 tracking-[-0.01em]">
-            One profile. Five communities. Endless authentic connections.
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-[28px] text-domeo-gray-600 font-light max-w-3xl mx-auto mb-16 leading-[1.5] opacity-0 animate-fade-up animate-delay-400 tracking-[-0.01em]">
+            One profile. Five communities.<br className="hidden sm:block" />
+            Endless authentic connections.
           </p>
           
           <div className="opacity-0 animate-fade-up animate-delay-600">
-            <button className="group relative inline-flex items-center justify-center px-8 md:px-16 py-4 md:py-[22px] bg-gray-900 text-white rounded-full font-medium text-[16px] md:text-[17px] overflow-hidden transition-all duration-500 hover:bg-gray-800 transform hover:scale-[1.02] hover:shadow-2xl active:scale-[0.98] min-h-[44px] md:min-h-0">
-              <span className="relative z-10 tracking-[-0.01em]">
-                Claim Founding Membership
-              </span>
-              {/* Shimmer effect on hover */}
-              <div className="absolute inset-0 -top-2 -bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 group-hover:animate-shimmer"></div>
-              </div>
+            <button className="px-14 py-5 bg-domeo-black text-white text-[13px] font-normal tracking-[0.2em] uppercase hover:bg-domeo-charcoal transition-all duration-500">
+              Claim Founding Membership
             </button>
-            <p className="mt-8 text-[15px] text-gray-600 font-light tracking-[-0.01em]">
-              <span className="text-green-600 font-medium">3 months free</span> for founding members • Then $29/mo
-            </p>
+                          <div className="mt-8 flex items-center justify-center">
+                <div className="text-[14px] font-light tracking-[-0.01em] text-domeo-gray-600">
+                  <span className="text-domeo-black font-medium">3 months free</span>
+                  <span className="mx-2">Then $29/mo</span>
+                </div>
+              </div>
+          </div>
+        </div>
+        
+        {/* Minimal scroll indicator */}
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+          <div className="w-[1px] h-[60px] bg-domeo-gray-300 relative">
+            <div className="absolute top-0 w-[1px] h-[20px] bg-domeo-black animate-pulse"></div>
           </div>
         </div>
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-20 md:py-24 bg-gradient-to-b from-white via-gray-50/20 to-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
+      <section className="py-24 bg-white border-y border-domeo-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
             {[
               { 
                 number: '5,000', 
-                label: 'FOUNDING MEMBERS ONLY',
-                icon: '🎯'
+                label: 'Founding Members',
+                icon: TrustIcons.founding
               },
               { 
                 number: '100%', 
-                label: 'VERIFIED PROFILES',
-                icon: '✓'
+                label: 'Verified',
+                icon: TrustIcons.verified
               },
               { 
                 number: '5', 
-                label: 'UNIQUE COMMUNITIES',
-                icon: '🏠'
+                label: 'Communities',
+                icon: TrustIcons.communities
               },
               { 
                 number: '2024', 
-                label: 'FRESH START TO DATING',
-                icon: '✨'
+                label: 'Fresh Start',
+                icon: TrustIcons.fresh
               }
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center group animate-on-scroll relative"
+                className="text-center group animate-on-scroll"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl"></div>
-                <div className="relative">
-                  <div className="text-2xl mb-6 opacity-30 group-hover:opacity-60 transition-all duration-500 transform group-hover:scale-110">
-                    {stat.icon}
-                  </div>
-                  <p className="text-[3.5rem] md:text-[4rem] font-extralight text-gray-900 mb-4 tracking-[-0.03em] transition-all duration-300">
-                    {stat.number}
-                  </p>
-                  <p className="text-[11px] text-gray-500 font-medium tracking-[0.15em] uppercase">
-                    {stat.label}
-                  </p>
+                <div className="flex justify-center mb-6 text-domeo-gray-400 group-hover:text-domeo-accent transition-colors duration-500">
+                  {stat.icon}
                 </div>
+                <p className="text-[3rem] md:text-[3.5rem] font-extralight text-domeo-black mb-2 tracking-[-0.03em]">
+                  {stat.number}
+                </p>
+                <p className="text-[12px] text-domeo-gray-500 font-medium tracking-[0.15em] uppercase">
+                  {stat.label}
+                </p>
               </div>
             ))}
           </div>
@@ -167,51 +170,46 @@ export default function Home() {
       </section>
 
       {/* Five Domes Section */}
-      <section className="py-20 md:py-36 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <section className="py-36 bg-domeo-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-24 animate-on-scroll">
-            <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9]">
+            <h2 className="text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-domeo-black mb-8 tracking-[-0.03em]">
               Five spaces for every side of you
             </h2>
-            <p className="text-[16px] md:text-[18px] lg:text-[20px] text-gray-600 font-light leading-[1.6] tracking-[-0.01em] max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-domeo-gray-600 font-light max-w-3xl mx-auto">
               Each dome is a curated community with its own culture and purpose.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
             {[
               {
                 name: 'Connect',
-                gradient: 'from-pink-400/90 to-rose-500/90',
-                emoji: '💕',
+                icon: DomeIcons.connect,
                 tagline: 'Date with intention',
-                subtext: 'All orientations welcome'
+                subtext: 'All orientations'
               },
               {
                 name: 'Explore',
-                gradient: 'from-purple-400/90 to-indigo-500/90',
-                emoji: '✨',
+                icon: DomeIcons.explore,
                 tagline: 'Modern & Alternative',
-                subtext: 'ENM • Poly • Kink-positive'
+                subtext: 'ENM • Poly • Kink'
               },
               {
                 name: 'Social',
-                gradient: 'from-blue-400/90 to-cyan-500/90',
-                emoji: '🤝',
+                icon: DomeIcons.social,
                 tagline: 'Find your tribe',
-                subtext: 'Platonic connections only'
+                subtext: 'Platonic only'
               },
               {
                 name: 'Professional',
-                gradient: 'from-slate-600/90 to-gray-800/90',
-                emoji: '💼',
+                icon: DomeIcons.professional,
                 tagline: 'Where ambition meets',
-                subtext: 'Network with chemistry'
+                subtext: 'Network differently'
               },
               {
                 name: 'Private',
-                gradient: 'from-gray-800/90 to-black/90',
-                emoji: '🔒',
+                icon: DomeIcons.private,
                 tagline: 'Your secrets, protected',
                 subtext: 'Complete discretion'
               }
@@ -222,22 +220,18 @@ export default function Home() {
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="relative mb-8">
-                  {/* Subtle glow on hover */}
-                  <div className={`absolute -inset-6 bg-gradient-to-br ${dome.gradient} opacity-0 group-hover:opacity-20 blur-3xl transition-all duration-700 rounded-full`}></div>
-                  
-                  {/* Refined dome circle */}
-                  <div className={`relative w-32 h-32 md:w-36 md:h-36 mx-auto rounded-full bg-gradient-to-br ${dome.gradient} flex items-center justify-center shadow-xl transform transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl`}>
-                    <span className="text-5xl md:text-6xl filter drop-shadow-md transform transition-all duration-500 group-hover:scale-110">
-                      {dome.emoji}
-                    </span>
+                  <div className="w-32 h-32 md:w-36 md:h-36 mx-auto rounded-full bg-white border border-domeo-gray-200 flex items-center justify-center group-hover:border-domeo-accent transition-all duration-500 group-hover:scale-110">
+                    <div className="text-domeo-gray-400 group-hover:text-domeo-accent transition-colors duration-500">
+                      {dome.icon}
+                    </div>
                   </div>
                 </div>
                 
-                <h3 className="text-lg md:text-xl font-medium mb-2 transition-colors duration-300 group-hover:text-gray-700">
+                <h3 className="text-[16px] font-medium mb-2 text-domeo-black tracking-wide uppercase">
                   {dome.name}
                 </h3>
-                <p className="text-sm text-gray-600 font-light mb-2">{dome.tagline}</p>
-                <p className="text-xs text-gray-400 font-light opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-1 group-hover:translate-y-0">
+                <p className="text-[14px] text-domeo-gray-600 font-light mb-1">{dome.tagline}</p>
+                <p className="text-[12px] text-domeo-gray-400 font-light opacity-0 group-hover:opacity-100 transition-all duration-500">
                   {dome.subtext}
                 </p>
               </div>
@@ -247,51 +241,133 @@ export default function Home() {
       </section>
 
       {/* Comparison Section */}
-      <section className="py-20 md:py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
-          <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-center text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9] animate-on-scroll">
+      <section className="py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-center text-domeo-black mb-20 animate-on-scroll tracking-[-0.03em]">
             Dating apps weren't built for real life
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            <div className="bg-gray-50 rounded-3xl p-8 md:p-12 animate-on-scroll hover-lift border border-gray-100">
-              <h3 className="text-2xl font-light mb-8 text-gray-600">The Old Way</h3>
-              <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* The Old Way */}
+            <div className="bg-gray-50/50 rounded-3xl p-12 animate-on-scroll hover-lift border border-gray-100">
+              <h3 className="text-2xl font-light mb-12 text-domeo-gray-600">The Old Way</h3>
+              <div className="space-y-8">
                 {[
-                  { emoji: '😕', title: 'Everyone in one feed', desc: 'Hookups next to marriages, confusing for everyone' },
-                  { emoji: '🎭', title: 'Fake profiles everywhere', desc: 'Catfishing, bots, and photo filters' },
-                  { emoji: '👻', title: 'No privacy control', desc: 'Your ex, boss, and mom can all find you' },
-                  { emoji: '💸', title: 'Hidden fees and tricks', desc: 'Pay extra for basic features' }
+                  { 
+                    icon: (
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1"/>
+                        <circle cx="7" cy="8" r="1" fill="currentColor"/>
+                        <circle cx="13" cy="8" r="1" fill="currentColor"/>
+                        <path d="M6 13C6 13 8 11 10 11C12 11 14 13 14 13" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
+                      </svg>
+                    ),
+                    title: 'Everyone in one feed',
+                    desc: 'Hookups next to marriages, confusing for everyone'
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2C10 2 6 4 6 8C6 12 10 14 10 14C10 14 14 12 14 8C14 4 10 2 10 2Z" stroke="currentColor" strokeWidth="1"/>
+                        <path d="M10 14V18" stroke="currentColor" strokeWidth="1"/>
+                        <line x1="7" y1="7" x2="13" y2="13" stroke="currentColor" strokeWidth="1"/>
+                      </svg>
+                    ),
+                    title: 'Fake profiles everywhere',
+                    desc: 'Catfishing, bots, and photo filters'
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1"/>
+                        <path d="M10 2V10L14 14" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
+                        <line x1="3" y1="3" x2="17" y2="17" stroke="currentColor" strokeWidth="1"/>
+                      </svg>
+                    ),
+                    title: 'No privacy control',
+                    desc: 'Your ex, boss, and mom can all find you'
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <rect x="4" y="8" width="12" height="8" stroke="currentColor" strokeWidth="1" rx="1"/>
+                        <path d="M6 8V6C6 4 8 2 10 2C12 2 14 4 14 6V8" stroke="currentColor" strokeWidth="1"/>
+                        <path d="M10 11V13" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
+                        <circle cx="16" cy="4" r="2" stroke="currentColor" strokeWidth="1"/>
+                        <path d="M16 2V6M14 4H18" stroke="currentColor" strokeWidth="0.5"/>
+                      </svg>
+                    ),
+                    title: 'Hidden fees and tricks',
+                    desc: 'Pay extra for basic features'
+                  }
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-4 group">
-                    <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center flex-shrink-0 transform transition-all duration-300 group-hover:scale-110 group-hover:bg-red-100">
-                      <span className="text-xl">{item.emoji}</span>
+                    <div className="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center flex-shrink-0 group-hover:bg-red-100 transition-colors">
+                      <span className="text-red-400">{item.icon}</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900 mb-1">{item.title}</p>
-                      <p className="text-sm text-gray-600 font-light leading-relaxed">{item.desc}</p>
+                      <p className="font-medium text-domeo-black mb-1">{item.title}</p>
+                      <p className="text-sm text-domeo-gray-600 font-light leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-purple-50 via-pink-50/50 to-purple-50 rounded-3xl p-8 md:p-12 animate-on-scroll hover-lift border border-purple-100">
-              <h3 className="text-2xl font-light mb-8 text-gray-900">The Domeo Way</h3>
-              <div className="space-y-6">
+            {/* The Domeo Way */}
+            <div className="bg-domeo-gray-50/30 rounded-3xl p-12 animate-on-scroll hover-lift border border-domeo-gray-100">
+              <h3 className="text-2xl font-light mb-12 text-domeo-black">The Domeo Way</h3>
+              <div className="space-y-8">
                 {[
-                  { emoji: '🎯', title: 'Five distinct communities', desc: 'Clear intentions, compatible matches only' },
-                  { emoji: '✅', title: '100% real people', desc: 'AI + human verification, no exceptions' },
-                  { emoji: '🔒', title: 'Complete privacy control', desc: 'Your domes stay separate, your business stays yours' },
-                  { emoji: '💎', title: 'Transparent pricing', desc: 'One price, all features, no surprises' }
+                  { 
+                    icon: (
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1"/>
+                        <circle cx="10" cy="10" r="4" stroke="currentColor" strokeWidth="1"/>
+                        <circle cx="10" cy="10" r="1" fill="currentColor"/>
+                      </svg>
+                    ),
+                    title: 'Five distinct communities',
+                    desc: 'Clear intentions, compatible matches only'
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1"/>
+                        <path d="M6 10L9 13L14 8" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    ),
+                    title: '100% real people',
+                    desc: 'AI + human verification, no exceptions'
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <rect x="4" y="8" width="12" height="8" stroke="currentColor" strokeWidth="1" rx="1"/>
+                        <path d="M6 8V6C6 4 8 2 10 2C12 2 14 4 14 6V8" stroke="currentColor" strokeWidth="1"/>
+                        <circle cx="10" cy="12" r="1" fill="currentColor"/>
+                      </svg>
+                    ),
+                    title: 'Complete privacy control',
+                    desc: 'Your domes stay separate, your business stays yours'
+                  },
+                  { 
+                    icon: (
+                      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L12 8H18L13 11L15 17L10 13L5 17L7 11L2 8H8L10 2Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round"/>
+                      </svg>
+                    ),
+                    title: 'Transparent pricing',
+                    desc: 'One price, all features, no surprises'
+                  }
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-4 group">
-                    <div className="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center flex-shrink-0 transform transition-all duration-300 group-hover:scale-110 group-hover:bg-green-100">
-                      <span className="text-xl">{item.emoji}</span>
+                    <div className="w-12 h-12 rounded-2xl bg-domeo-accent-muted flex items-center justify-center flex-shrink-0 group-hover:bg-domeo-accent/20 transition-colors">
+                      <span className="text-domeo-accent">{item.icon}</span>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900 mb-1">{item.title}</p>
-                      <p className="text-sm text-gray-600 font-light leading-relaxed">{item.desc}</p>
+                      <p className="font-medium text-domeo-black mb-1">{item.title}</p>
+                      <p className="text-sm text-domeo-gray-600 font-light leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -385,68 +461,89 @@ export default function Home() {
       </section>
 
       {/* Founding Member Section */}
-      <section className="py-20 md:py-36 bg-gradient-to-br from-purple-50 via-white to-pink-50">
+      <section className="py-20 md:py-36 bg-white">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
-                      <div className="bg-gradient-to-r from-pink-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center relative overflow-hidden animate-on-scroll">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white/20"></div>
-              <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-white/20"></div>
+          <div className="bg-domeo-black text-white rounded-3xl p-12 text-center relative overflow-hidden animate-on-scroll">
+            {/* Subtle pattern overlay */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 1px)`,
+                backgroundSize: '20px 20px'
+              }}></div>
             </div>
             
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-4 py-2 rounded-full mb-6">
-                <span className="text-2xl">🎉</span>
-                <span className="font-medium">Founding Member Special</span>
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full mb-6 text-sm tracking-wide uppercase">
+                Founding Member Special
               </div>
               
-              <h3 className="text-3xl font-light mb-6">Be part of something new</h3>
-              <div className="text-6xl md:text-7xl font-light mb-4">3 Months Free</div>
-              <p className="text-xl opacity-90 mb-8">Join the first 5,000 members shaping the future of connection</p>
+              <h3 className="text-2xl font-extralight mb-6 tracking-wide">Be part of something new</h3>
+              <div className="text-6xl md:text-7xl font-extralight mb-4 tracking-tight">3 Months Free</div>
+              <p className="text-lg opacity-80 mb-8 font-light">Join the first 5,000 members shaping the future of connection</p>
               
-              {/* Progress Bar */}
+              {/* Minimal progress indicator */}
               <div className="max-w-md mx-auto mb-8">
-                <div className="flex justify-between text-sm mb-2 opacity-80">
-                  <span>2,153 members joined</span>
-                  <span>2,847 spots left</span>
+                <div className="flex justify-between text-xs mb-2 opacity-60 uppercase tracking-wider">
+                  <span>2,153 joined</span>
+                  <span>2,847 remaining</span>
                 </div>
-                <div className="h-4 bg-white/30 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-white rounded-full transition-all duration-1000" 
-                    style={{ width: '43%' }}
-                  ></div>
+                <div className="h-[1px] bg-white/20 relative">
+                  <div className="h-full bg-white absolute left-0 top-0" style={{ width: '43%' }}></div>
                 </div>
               </div>
               
-              <button className="group relative inline-flex items-center justify-center px-8 md:px-12 py-4 md:py-5 bg-white text-gray-900 rounded-full text-[16px] md:text-lg font-medium overflow-hidden transition-all duration-500 hover:bg-gray-50 transform hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] min-h-[44px] md:min-h-0">
-                <span className="relative z-10">
-                  Claim Your Spot
-                </span>
-                {/* Shimmer effect on hover */}
-                <div className="absolute inset-0 -top-2 -bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200/20 to-transparent -skew-x-12 group-hover:animate-shimmer"></div>
-                </div>
+              <button className="px-14 py-5 bg-white text-domeo-black text-[13px] font-normal tracking-[0.2em] uppercase hover:bg-gray-100 transition-all duration-500">
+                Claim Your Spot
               </button>
               
-              <p className="mt-6 text-sm opacity-80">
-                No credit card required • $29/month after trial • Cancel anytime
+              <p className="mt-6 text-xs opacity-60 uppercase tracking-wider">
+                No credit card required • $29/month after trial
               </p>
             </div>
           </div>
           
           {/* Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
             {[
-              { icon: '🎯', title: 'Shape the platform', desc: 'Your feedback directly influences new features' },
-              { icon: '⚡', title: 'First access', desc: 'Be first in your city when we launch' },
-              { icon: '💎', title: 'Exclusive perks', desc: 'Special badge and premium features' }
+              { 
+                icon: (
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1"/>
+                    <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1"/>
+                    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                    <path d="M12 2V4M12 20V22M2 12H4M20 12H22" stroke="currentColor" strokeWidth="0.5" opacity="0.5"/>
+                  </svg>
+                ),
+                title: 'Shape the platform',
+                desc: 'Your feedback directly influences new features'
+              },
+              { 
+                icon: (
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round"/>
+                  </svg>
+                ),
+                title: 'First access',
+                desc: 'Be first in your city when we launch'
+              },
+              { 
+                icon: (
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round"/>
+                    <circle cx="18" cy="6" r="1" stroke="currentColor" strokeWidth="1"/>
+                    <circle cx="6" cy="18" r="1" stroke="currentColor" strokeWidth="1"/>
+                  </svg>
+                ),
+                title: 'Exclusive perks',
+                desc: 'Special badge and premium features'
+              }
             ].map((benefit, index) => (
               <div key={index} className="text-center animate-on-scroll" style={{ transitionDelay: `${index * 100}ms` }}>
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">{benefit.icon}</span>
+                <div className="w-16 h-16 bg-domeo-accent-muted rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-domeo-accent/20 transition-colors">
+                  <span className="text-domeo-accent">{benefit.icon}</span>
                 </div>
-                <h4 className="font-medium mb-2">{benefit.title}</h4>
-                <p className="text-sm text-gray-600">{benefit.desc}</p>
+                <h4 className="font-medium text-domeo-black mb-2 text-[15px]">{benefit.title}</h4>
+                <p className="text-[13px] text-domeo-gray-600 font-light">{benefit.desc}</p>
               </div>
             ))}
           </div>
@@ -464,14 +561,8 @@ export default function Home() {
           </p>
           
           <div className="animate-on-scroll">
-            <button className="group relative inline-flex items-center justify-center px-8 md:px-12 py-4 md:py-5 text-[16px] md:text-lg bg-black text-white rounded-full font-medium overflow-hidden transition-all duration-500 hover:bg-gray-800 transform hover:scale-[1.02] hover:shadow-2xl active:scale-[0.98] min-h-[44px] md:min-h-0">
-              <span className="relative z-10">
-                Start Free for 3 Months
-              </span>
-              {/* Shimmer effect on hover */}
-              <div className="absolute inset-0 -top-2 -bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 group-hover:animate-shimmer"></div>
-              </div>
+            <button className="px-14 py-5 bg-domeo-black text-white text-[13px] font-normal tracking-[0.2em] uppercase hover:bg-domeo-charcoal transition-all duration-500">
+              Start Free for 3 Months
             </button>
             
             <p className="mt-8 text-pink-500 font-medium animate-pulse">
@@ -491,55 +582,61 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div className="col-span-1">
-              <Logo theme="light" size="sm" className="mb-4" />
-              <p className="text-gray-400 text-sm">
+      <footer className="bg-white border-t border-domeo-gray-100 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div>
+              <Logo theme="dark" size="sm" className="mb-6" />
+              <p className="text-[13px] text-domeo-gray-500 leading-relaxed">
                 One profile. Five communities.<br />
                 Endless authentic connections.
               </p>
             </div>
             
             <div>
-              <h4 className="font-medium mb-4">Product</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition">How It Works</a></li>
-                <li><a href="#" className="hover:text-white transition">The Domes</a></li>
-                <li><a href="#" className="hover:text-white transition">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition">Success Stories</a></li>
+              <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Product</h4>
+              <ul className="space-y-3">
+                {['How It Works', 'The Domes', 'Pricing', 'Success Stories'].map(item => (
+                  <li key={item}>
+                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             
             <div>
-              <h4 className="font-medium mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition">Press</a></li>
-                <li><a href="#" className="hover:text-white transition">Blog</a></li>
+              <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Company</h4>
+              <ul className="space-y-3">
+                {['About Us', 'Careers', 'Press', 'Blog'].map(item => (
+                  <li key={item}>
+                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             
             <div>
-              <h4 className="font-medium mb-4">Trust & Safety</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition">Safety Center</a></li>
-                <li><a href="#" className="hover:text-white transition">Community Guidelines</a></li>
-                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
+              <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Trust & Safety</h4>
+              <ul className="space-y-3">
+                {['Safety Center', 'Community Guidelines', 'Privacy Policy', 'Terms of Service'].map(item => (
+                  <li key={item}>
+                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
+                      {item}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-gray-800 pt-8 flex flex-wrap items-center justify-between">
-            <p className="text-sm text-gray-400">© 2024 Domeo. All rights reserved.</p>
-            <div className="flex items-center gap-6 text-sm text-gray-400">
-              <span>🔒 256-bit SSL</span>
-              <span>SOC 2 Certified</span>
-              <span>CCPA Compliant</span>
-            </div>
+          <div className="border-t border-domeo-gray-100 mt-16 pt-8">
+            <p className="text-[11px] text-domeo-gray-400 text-center tracking-wider uppercase">
+              © 2024 Domeo. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>

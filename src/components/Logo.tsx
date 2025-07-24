@@ -28,30 +28,16 @@ export default function Logo({
     ? '/domeo-logo-white-transparent.png'
     : '/domeo-logo-black-transparent.png';
   
-  // Fallback text logo with arch
+  // Fallback text logo with sophisticated monochrome design
   const textLogo = (
     <div className={`relative ${className}`}>
-      <div className="absolute -top-2 left-0 right-0 h-8">
-        <svg width="100%" height="30" viewBox="0 0 200 30" fill="none" preserveAspectRatio="none">
-          <path 
-            d="M10 20 Q100 -5 190 20" 
-            stroke="url(#gradient)" 
-            strokeWidth="3" 
-            fill="none"
-          />
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#EC4899" />
-              <stop offset="100%" stopColor="#A855F7" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      <span className={`${currentSize.text} font-light tracking-tight ${
-        theme === 'light' ? 'text-white' : 'text-gray-900'
+      <span className={`${currentSize.text} font-extralight tracking-[-0.03em] ${
+        theme === 'light' ? 'text-white' : 'text-domeo-black'
       }`}>
         domeo
       </span>
+      {/* Simple dot instead of arch */}
+      <div className="absolute -top-1 -right-3 w-2 h-2 bg-domeo-accent rounded-full"></div>
     </div>
   );
   

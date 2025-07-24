@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+const config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,6 +7,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        // Sophisticated neutrals
+        'domeo-black': '#0A0A0A',
+        'domeo-charcoal': '#1A1A1A',
+        'domeo-gray': {
+          900: '#1F1F1F',
+          800: '#2A2A2A',
+          700: '#404040',
+          600: '#525252',
+          500: '#737373',
+          400: '#A3A3A3',
+          300: '#D4D4D4',
+          200: '#E5E5E5',
+          100: '#F5F5F5',
+          50: '#FAFAFA',
+        },
+        // Single accent color - sophisticated purple
+        'domeo-accent': '#6B46C1', // Refined purple
+        'domeo-accent-muted': '#9333EA20', // 20% opacity for backgrounds
+      },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
       },
@@ -74,4 +93,5 @@ const config: Config = {
   },
   plugins: [],
 };
-export default config; 
+
+module.exports = config; 

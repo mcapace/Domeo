@@ -233,7 +233,7 @@
 
 /* Better hover states */
 .hover-elegant {
-  @apply transition-all duration-300 ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .hover-elegant:hover {
@@ -322,6 +322,13 @@ html {
 img {
   -webkit-user-drag: none;
   user-select: none;
+}
+
+/* Text rendering optimization */
+.text-domeo-gray-600 {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Shimmer animation for buttons */
