@@ -23,6 +23,7 @@ Domeo is a sophisticated dating platform with 5 distinct communities (domes) whe
 - ✅ User registration API
 - ✅ Dome selection system
 - ✅ Dashboard with dome switcher
+- ✅ Dashboard navigation improvements (clean UX, logo consistency)
 - 🔲 Profile creation flow
 - 🔲 Individual dome interfaces
 - 🔲 Matching system
@@ -91,19 +92,23 @@ colors: {
 - **Main Swipe Area**: Ready for card stack implementation
 - **Recent Matches**: Shows dome-specific connections
 - **Profile Completion**: Only in Connect (dating focus)
+- **Clean Navigation**: Removed incentive bar and homepage navigation for focused experience
+- **Logo Redirect**: Dashboard logo links to homepage for easy navigation
 
 **Dome Configurations**:
 - **Connect**: Dating focus with pink theme, profile completion prompts
 - **Explore**: ENM/alternative lifestyles with purple theme
 - **Social**: Platonic connections with blue theme
 - **Professional**: Networking with gray theme
-- **Private**: Discreet connections with dark theme
+- **Private**: Discreet connections with dark theme (fixed text color issue)
 
 **Technical Implementation**:
 - TypeScript interfaces for type safety
 - React state management for dome switching
 - Responsive grid layout (1 column mobile, 3 columns desktop)
 - Sample data structure ready for API integration
+- ConditionalLayout component for navigation management
+- Logo size consistency across all pages (120x48 pixels)
 
 ## Components Created
 
@@ -158,6 +163,14 @@ export const SocialIcons = {
   github: // GitHub octocat
 }
 ```
+
+### 6. ConditionalLayout (src/components/ConditionalLayout.tsx)
+**Purpose**: Conditionally shows/hides navigation elements based on current page
+**Features**:
+- Hides incentive bar and navigation on dashboard for cleaner UX
+- Maintains navigation on homepage and auth pages
+- Uses `usePathname()` to detect current route
+- Includes founding member banner when navigation is shown
 
 ## Authentication Flow
 
@@ -460,6 +473,8 @@ The homepage and complete authentication flow are finished with:
    - Notifications center
    - Quick stats (matches, messages)
    - Profile completion prompt
+   - Clean navigation (incentive bar and homepage nav hidden)
+   - Logo consistency and homepage redirect
 
 2. **Profile Creation Wizard**
    - Photo upload with AI verification
@@ -485,18 +500,19 @@ When starting a new chat, share:
 
 "I'm building Domeo, a sophisticated dating app with 5 communities"
 "We've completed the homepage, full auth flow, and dashboard with dome switcher"
+"Dashboard has clean navigation (no incentive bar/homepage nav) and consistent logo sizing"
 "Using monochrome design with purple accent (#6B46C1) and pink highlights"
 "Next.js 15, TypeScript, Tailwind CSS, Prisma, PostgreSQL"
 "Authentication system is working with Google OAuth, Apple and Facebook need setup"
 "Database schema is ready, PostgreSQL server needs to be started"
-"Dashboard is complete with dome switcher and context-specific features"
+"Dashboard is complete with dome switcher, clean UX, and logo redirects to homepage"
 "Next task: Building the profile creation wizard"
 
 ## Git Commands
 ```bash
 # Save current state
 git add .
-git commit -m "Complete dashboard with dome switcher - major milestone achieved"
+git commit -m "feat: implement dashboard navigation improvements and logo consistency"
 git push
 
 # When resuming
