@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import Logo from '@/components/Logo';
 import { SocialIcons } from '@/components/SocialIcons';
 
@@ -11,9 +13,30 @@ export default function SignIn() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
-  const handleSocialLogin = (provider: string) => {
-    console.log(`Login with ${provider}`);
+  const handleSocialLogin = async (provider: string) => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const result = await signIn(provider, {
+        callbackUrl: '/dashboard',
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError(`Failed to sign in with ${provider}`);
+      } else if (result?.ok) {
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      console.error(`${provider} sign in error:`, error);
+      setError(`Failed to sign in with ${provider}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -36,17 +59,37 @@ export default function SignIn() {
           </p>
         </div>
 
+        {/* Error Display */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6 max-w-xl mx-auto">
+            <div className="flex items-center gap-3">
+              <svg className="w-5 h-5 text-red-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+              </svg>
+              <p className="text-[14px] text-red-700">{error}</p>
+            </div>
+          </div>
+        )}
+
         {/* Main Container */}
         <div className="bg-white rounded-2xl shadow-sm border border-domeo-gray-100 p-8">
           {/* Social Login Options */}
           <div className="space-y-3">
             <button
               onClick={() => handleSocialLogin('google')}
-              className="w-full px-4 py-3.5 bg-white border border-domeo-gray-200 rounded-lg hover:border-domeo-gray-300 hover:bg-domeo-gray-50 transition-all duration-200 flex items-center justify-center gap-3"
+              disabled={isLoading}
+              className="w-full px-4 py-3.5 bg-white border border-domeo-gray-200 rounded-lg hover:border-domeo-gray-300 hover:bg-domeo-gray-50 transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {SocialIcons.google}
+              {isLoading ? (
+                <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              ) : (
+                SocialIcons.google
+              )}
               <span className="text-[15px] font-medium text-domeo-gray-700">
-                Continue with Google
+                {isLoading ? 'Signing in...' : 'Continue with Google'}
               </span>
             </button>
 

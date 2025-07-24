@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/Navigation';
 import ConditionalTrustBar from '@/components/ConditionalTrustBar';
+import { SessionProvider } from '@/components/SessionProvider';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -37,9 +38,11 @@ export default function RootLayout({
           </p>
         </div>
         
-        <Navigation />
-        <ConditionalTrustBar />
-        <main>{children}</main>
+        <SessionProvider>
+          <Navigation />
+          <ConditionalTrustBar />
+          <main>{children}</main>
+        </SessionProvider>
       </body>
     </html>
   );
