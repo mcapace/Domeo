@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { DomeIcons } from '@/components/DomeIcons';
 import Logo from '@/components/Logo';
+import SwipeStack from '@/components/SwipeStack';
 import React from 'react';
 
 type DomeType = 'connect' | 'explore' | 'social' | 'professional' | 'private';
@@ -158,7 +159,7 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Logo size="sm" theme="dark" linkToHome={true} />
+            <Logo size="xs" theme="dark" linkToHome={true} />
 
             {/* Dome Switcher */}
             <div className="flex items-center gap-1 bg-domeo-gray-50 rounded-full p-1">
@@ -329,63 +330,50 @@ export default function Dashboard() {
 
           {/* Center Column - Main Swipe Area */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl border border-domeo-gray-200 p-6 min-h-[600px]">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-medium text-domeo-black">
-                  {activeDome === 'connect' && 'Discover Singles'}
-                  {activeDome === 'explore' && 'Explore Connections'}
-                  {activeDome === 'social' && 'Find Friends'}
-                  {activeDome === 'professional' && 'Network'}
-                  {activeDome === 'private' && 'Browse Privately'}
-                </h2>
-                <button className="text-sm text-domeo-gray-600 hover:text-domeo-accent transition-colors">
-                  Filters
-                </button>
-              </div>
-
-              {/* Placeholder for Swipe Cards */}
-              <div className="flex items-center justify-center h-[500px] bg-domeo-gray-50 rounded-xl">
-                <div className="text-center">
-                  <div className={`w-24 h-24 ${currentDome.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    <span className={`${currentDome.color} scale-150`}>{currentDome.icon}</span>
-                  </div>
-                  <p className="text-domeo-gray-600 mb-4">Ready to start swiping in {currentDome.name}?</p>
-                  <button className="px-6 py-3 bg-domeo-black text-white rounded-xl text-sm font-medium uppercase tracking-wider hover:bg-domeo-charcoal transition-colors">
-                    Start Discovering
+            <section className="bg-white rounded-xl shadow-sm">
+              <div className="p-6 border-b border-domeo-gray-100">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-medium text-domeo-black">Discover Singles</h2>
+                  <button className="text-sm text-domeo-gray-600 hover:text-domeo-accent">
+                    Filters
                   </button>
                 </div>
               </div>
+              
+              <div className="p-6">
+                <SwipeStack dome={activeDome} />
+              </div>
+            </section>
 
-              {/* Recent Matches Preview */}
-              {currentMatches.length > 0 && (
-                <div className="mt-6 pt-6 border-t border-domeo-gray-200">
-                  <h3 className="text-sm font-medium text-domeo-gray-700 mb-4">Recent Matches</h3>
-                  <div className="space-y-3">
-                    {currentMatches.slice(0, 3).map((match) => (
-                      <div key={match.id} className="flex items-center justify-between p-3 hover:bg-domeo-gray-50 rounded-lg transition-colors cursor-pointer">
-                        <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 bg-domeo-gray-200 rounded-full flex items-center justify-center text-lg">
-                            {match.photo}
-                          </div>
-                          <div>
-                            <p className="text-sm font-medium text-domeo-black">
-                              {match.name} {match.age && <span className="font-normal text-domeo-gray-600">• {match.age}</span>}
-                            </p>
-                            <p className="text-xs text-domeo-gray-600">{match.lastMessage}</p>
-                          </div>
+            {/* Recent Matches Preview */}
+            {currentMatches.length > 0 && (
+              <div className="mt-6 bg-white rounded-xl shadow-sm p-6">
+                <h3 className="text-sm font-medium text-domeo-gray-700 mb-4">Recent Matches</h3>
+                <div className="space-y-3">
+                  {currentMatches.slice(0, 3).map((match) => (
+                    <div key={match.id} className="flex items-center justify-between p-3 hover:bg-domeo-gray-50 rounded-lg transition-colors cursor-pointer">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-domeo-gray-200 rounded-full flex items-center justify-center text-lg">
+                          {match.photo}
                         </div>
-                        <div className="text-right">
-                          <p className="text-xs text-domeo-gray-500">{match.time}</p>
-                          {match.isNew && (
-                            <span className="inline-block mt-1 w-2 h-2 bg-domeo-accent rounded-full"></span>
-                          )}
+                        <div>
+                          <p className="text-sm font-medium text-domeo-black">
+                            {match.name} {match.age && <span className="font-normal text-domeo-gray-600">• {match.age}</span>}
+                          </p>
+                          <p className="text-xs text-domeo-gray-600">{match.lastMessage}</p>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                      <div className="text-right">
+                        <p className="text-xs text-domeo-gray-500">{match.time}</p>
+                        {match.isNew && (
+                          <span className="inline-block mt-1 w-2 h-2 bg-domeo-accent rounded-full"></span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

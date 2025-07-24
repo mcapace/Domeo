@@ -24,30 +24,30 @@ export default function Navigation() {
     )}>
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-[72px]">
-          <Logo size="sm" theme="dark" />
+          <Logo size="xs" theme="dark" />
           
           <div className="hidden md:flex items-center gap-10">
             <Link 
               href="/how-it-works" 
-              className="text-[15px] text-gray-700 hover:text-gray-900 transition-colors font-medium tracking-[-0.01em]"
+              className="text-sm font-medium text-domeo-gray-600 hover:text-domeo-black transition-colors"
             >
               How It Works
             </Link>
             <Link 
               href="/safety" 
-              className="text-[15px] text-gray-700 hover:text-gray-900 transition-colors font-medium tracking-[-0.01em]"
+              className="text-sm font-medium text-domeo-gray-600 hover:text-domeo-black transition-colors"
             >
               Safety
             </Link>
             <Link 
               href="/membership" 
-              className="text-[15px] text-gray-700 hover:text-gray-900 transition-colors font-medium tracking-[-0.01em]"
+              className="text-sm font-medium text-domeo-gray-600 hover:text-domeo-black transition-colors"
             >
               Membership
             </Link>
             <Link 
               href="/auth/signin" 
-              className="px-7 py-2.5 bg-gray-900 text-white rounded-full text-[15px] font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg tracking-[-0.01em]"
+              className="px-7 py-2.5 bg-domeo-black text-white rounded-full text-sm font-medium hover:bg-domeo-gray-900 transition-all duration-300 hover:shadow-lg"
             >
               Sign In
             </Link>

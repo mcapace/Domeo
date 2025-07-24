@@ -3,13 +3,14 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 interface LogoProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   theme?: 'light' | 'dark';
   className?: string;
   linkToHome?: boolean;
 }
 
 const sizes = {
+  xs: { width: 90, height: 36, text: 'text-xl' },
   sm: { width: 120, height: 48, text: 'text-2xl' },
   md: { width: 150, height: 60, text: 'text-3xl' },
   lg: { width: 180, height: 72, text: 'text-4xl' },

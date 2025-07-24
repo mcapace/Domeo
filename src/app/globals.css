@@ -331,17 +331,6 @@ img {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Prevent text cursor/caret from appearing */
-.text-domeo-gray-600,
-.text-domeo-gray-600 * {
-  caret-color: transparent !important;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  pointer-events: none !important;
-}
-
 /* Shimmer animation for buttons */
 @keyframes shimmer {
   0% { transform: translateX(-100%) skewX(-12deg); }

@@ -2,16 +2,30 @@
 
 import { usePathname } from 'next/navigation';
 import Navigation from './Navigation';
+import DashboardNavigation from './DashboardNavigation';
 import ConditionalTrustBar from './ConditionalTrustBar';
 
 export default function ConditionalLayout() {
   const pathname = usePathname();
   const isDashboard = pathname === '/dashboard';
+  const isMessagesPage = pathname.startsWith('/messages/');
+  const isMatchesPage = pathname === '/matches';
 
+  // Don't show any layout for dashboard
   if (isDashboard) {
     return null;
   }
 
+  // For messages and matches pages, show dashboard navigation but no trust bar or incentive banner
+  if (isMessagesPage || isMatchesPage) {
+    return (
+      <>
+        <DashboardNavigation />
+      </>
+    );
+  }
+
+  // For all other pages, show everything including incentive banner
   return (
     <>
       {/* Founding Member Banner */}
