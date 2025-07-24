@@ -10,14 +10,15 @@ export default function ConditionalLayout() {
   const isDashboard = pathname === '/dashboard';
   const isMessagesPage = pathname.startsWith('/messages/');
   const isMatchesPage = pathname === '/matches';
+  const isProfileEditPage = pathname === '/profile/edit';
 
   // Don't show any layout for dashboard
   if (isDashboard) {
     return null;
   }
 
-  // For messages and matches pages, show dashboard navigation but no trust bar or incentive banner
-  if (isMessagesPage || isMatchesPage) {
+  // For messages, matches, and profile edit pages, show dashboard navigation but no trust bar or incentive banner
+  if (isMessagesPage || isMatchesPage || isProfileEditPage) {
     return (
       <>
         <DashboardNavigation />

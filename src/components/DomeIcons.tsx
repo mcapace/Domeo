@@ -3,9 +3,7 @@ import React from 'react';
 export const DomeIcons = {
   connect: (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="16" cy="16" r="11" stroke="currentColor" strokeWidth="1"/>
-      <circle cx="16" cy="16" r="5" stroke="currentColor" strokeWidth="1"/>
-      <path d="M16 0v32M0 16h32" stroke="currentColor" strokeWidth="0.5" opacity="0.3"/>
+      <path d="M16 26.5C16 26.5 24 20 24 14C24 10.6863 21.3137 8 18 8C15.5 8 13.5 9.5 12.5 11.5C11.5 9.5 9.5 8 7 8C3.68629 8 1 10.6863 1 14C1 20 9 26.5 16 26.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
     </svg>
   ),
   
@@ -37,9 +35,9 @@ export const DomeIcons = {
   
   private: (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 20C16 20 20 18 20 14C20 11.7909 18.2091 10 16 10C13.7909 10 12 11.7909 12 14C12 18 16 20 16 20Z" stroke="currentColor" strokeWidth="1"/>
-      <circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="1"/>
-      <path d="M16 22V26" stroke="currentColor" strokeWidth="1"/>
+      <rect x="10" y="14" width="12" height="12" rx="1" stroke="currentColor" strokeWidth="1"/>
+      <path d="M12 14V10C12 8.89543 12.8954 8 14 8H18C19.1046 8 20 8.89543 20 10V14" stroke="currentColor" strokeWidth="1"/>
+      <circle cx="16" cy="20" r="1.5" stroke="currentColor" strokeWidth="1"/>
     </svg>
   ),
 };
