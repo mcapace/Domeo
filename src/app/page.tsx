@@ -55,21 +55,17 @@ export default function Home() {
             <button className="px-14 py-5 bg-domeo-black text-white text-[13px] font-normal tracking-[0.2em] uppercase hover:bg-domeo-charcoal transition-all duration-500">
               Claim Founding Membership
             </button>
-                          <div className="mt-8 flex items-center justify-center">
-                <div className="text-[14px] font-light tracking-[-0.01em] text-domeo-gray-600">
-                  <span className="text-domeo-black font-medium">3 months free</span>
-                  <span className="mx-2">Then $29/mo</span>
-                </div>
-              </div>
+          </div>
+          
+          <div className="mt-8 flex items-center justify-center">
+            <div className="text-[14px] font-light tracking-[-0.01em]">
+              <span className="text-domeo-black font-medium">3 months free</span>
+              <span className="text-domeo-gray-600"> Then $29/mo</span>
+            </div>
           </div>
         </div>
         
-        {/* Minimal scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-          <div className="w-[1px] h-[60px] bg-domeo-gray-300 relative">
-            <div className="absolute top-0 w-[1px] h-[20px] bg-domeo-black animate-pulse"></div>
-          </div>
-        </div>
+
       </section>
 
       {/* Trust Indicators */}
