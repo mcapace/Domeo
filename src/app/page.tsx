@@ -59,27 +59,51 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in animate-delay-800">
-          <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gray-300 rounded-full mt-2 animate-bounce"></div>
-          </div>
-        </div>
+
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-20 bg-white border-y border-gray-100">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-24 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: '5,000', label: 'Founding members only' },
-              { number: '100%', label: 'Verified profiles' },
-              { number: '5', label: 'Unique communities' },
-              { number: '2024', label: 'Fresh start to dating' }
+              { 
+                number: '5,000', 
+                label: 'Founding members only',
+                icon: '🎯'
+              },
+              { 
+                number: '100%', 
+                label: 'Verified profiles',
+                icon: '✓'
+              },
+              { 
+                number: '5', 
+                label: 'Unique communities',
+                icon: '🏠'
+              },
+              { 
+                number: '2024', 
+                label: 'Fresh start to dating',
+                icon: '✨'
+              }
             ].map((stat, index) => (
-              <div key={index} className="animate-on-scroll" style={{ transitionDelay: `${index * 100}ms` }}>
-                <p className="text-4xl font-light text-gray-900 mb-2">{stat.number}</p>
-                <p className="text-sm text-gray-600">{stat.label}</p>
+              <div 
+                key={index} 
+                className="group animate-on-scroll transform transition-all duration-300 hover:scale-105"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="flex flex-col items-center">
+                  <div className="text-3xl mb-3 opacity-50 group-hover:opacity-100 transition-opacity">
+                    {stat.icon}
+                  </div>
+                  <p className="text-5xl md:text-6xl font-light text-gray-900 mb-2 tracking-tight">
+                    {stat.number}
+                  </p>
+                  <p className="text-sm md:text-base text-gray-600 font-normal">
+                    {stat.label}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -87,9 +111,9 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-32 bg-white">
+      <section className="py-36 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-20 animate-on-scroll">
+          <div className="text-center mb-24 animate-on-scroll">
             <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
               How Domeo Works
             </h2>
@@ -99,7 +123,7 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
             {[
               {
                 number: '1',
@@ -135,9 +159,9 @@ export default function Home() {
       </section>
 
       {/* Five Domes Section */}
-      <section className="py-32 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-36 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20 animate-on-scroll">
+          <div className="text-center mb-24 animate-on-scroll">
             <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
               Five spaces for every side of you
             </h2>
@@ -146,7 +170,7 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12">
             {[
               {
                 name: 'Connect',
@@ -220,13 +244,13 @@ export default function Home() {
       </section>
 
       {/* Comparison Section */}
-      <section className="py-32 bg-white">
+      <section className="py-36 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-light text-center text-gray-900 mb-20 animate-on-scroll">
+          <h2 className="text-4xl md:text-5xl font-light text-center text-gray-900 mb-24 animate-on-scroll">
             Dating apps weren't built for real life
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div className="bg-gray-50 rounded-3xl p-10 animate-on-scroll hover-lift">
               <h3 className="text-2xl font-normal mb-8 text-gray-500">The Old Way</h3>
               <div className="space-y-6">
@@ -277,32 +301,40 @@ export default function Home() {
       {/* Everyone Welcome / Everyone Verified */}
       <section className="py-0">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="bg-white py-32 px-12 md:px-24 animate-on-scroll">
-            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight">
+          <div className="bg-white py-36 px-12 md:px-24 animate-on-scroll group hover:bg-gray-50 transition-colors duration-500">
+            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight group-hover:scale-105 transition-transform duration-500">
               Everyone<br />Welcome
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-lg mb-8">
+            <p className="text-xl text-gray-600 leading-relaxed max-w-lg mb-8 group-hover:text-gray-700 transition-colors duration-500">
               All orientations, all genders, all relationship styles. Your authentic self belongs here.
             </p>
             <div className="flex flex-wrap gap-3">
-              {['LGBTQ+ Inclusive', 'Non-binary Friendly', 'Poly & ENM Welcome'].map((tag) => (
-                <span key={tag} className="text-sm bg-gray-100 px-4 py-2 rounded-full">
+              {['LGBTQ+ Inclusive', 'Non-binary Friendly', 'Poly & ENM Welcome'].map((tag, index) => (
+                <span 
+                  key={tag} 
+                  className="text-sm bg-gray-100 px-4 py-2 rounded-full hover:bg-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer"
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
                   {tag}
                 </span>
               ))}
             </div>
           </div>
           
-          <div className="bg-gray-50 py-32 px-12 md:px-24 animate-on-scroll">
-            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight">
+          <div className="bg-white py-36 px-12 md:px-24 animate-on-scroll group hover:bg-gray-50 transition-colors duration-500">
+            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight group-hover:scale-105 transition-transform duration-500">
               Everyone<br />Verified
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-lg mb-8">
+            <p className="text-xl text-gray-600 leading-relaxed max-w-lg mb-8 group-hover:text-gray-700 transition-colors duration-500">
               AI and human review for every member. No exceptions. Connect with confidence.
             </p>
             <div className="flex flex-wrap gap-3">
-              {['Photo Verification', 'ID Confirmation', '0% Fake Profiles'].map((tag) => (
-                <span key={tag} className="text-sm bg-white px-4 py-2 rounded-full">
+              {['Photo Verification', 'ID Confirmation', '0% Fake Profiles'].map((tag, index) => (
+                <span 
+                  key={tag} 
+                  className="text-sm bg-gray-100 px-4 py-2 rounded-full hover:bg-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer"
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
                   {tag}
                 </span>
               ))}
@@ -312,13 +344,13 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-32 bg-white">
+      <section className="py-36 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-light text-center text-gray-900 mb-20 animate-on-scroll">
+          <h2 className="text-4xl md:text-5xl font-light text-center text-gray-900 mb-24 animate-on-scroll">
             Real connections from real members
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {[
               {
                 quote: "Found my partner in Connect and my hiking crew in Social. One profile, two life-changing connections.",
@@ -352,7 +384,7 @@ export default function Home() {
       </section>
 
       {/* Founding Member Section */}
-      <section className="py-32 bg-gradient-to-br from-purple-50 via-white to-pink-50">
+      <section className="py-36 bg-gradient-to-br from-purple-50 via-white to-pink-50">
         <div className="max-w-5xl mx-auto px-6">
           <div className="bg-gradient-to-r from-pink-500 to-purple-600 rounded-3xl p-12 text-white text-center relative overflow-hidden animate-on-scroll">
             {/* Background Pattern */}
@@ -396,7 +428,7 @@ export default function Home() {
           </div>
           
           {/* Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
             {[
               { icon: '🎯', title: 'Shape the platform', desc: 'Your feedback directly influences new features' },
               { icon: '⚡', title: 'First access', desc: 'Be first in your city when we launch' },
@@ -415,7 +447,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 bg-white">
+      <section className="py-36 bg-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6 animate-on-scroll">
             Your people are waiting
@@ -435,7 +467,7 @@ export default function Home() {
           </div>
           
           {/* Team Message */}
-          <div className="mt-20 pt-20 border-t border-gray-200 animate-on-scroll">
+          <div className="mt-24 pt-24 border-t border-gray-200 animate-on-scroll">
             <p className="text-gray-600 mb-4 max-w-2xl mx-auto">
               "We're building Domeo because we believe everyone deserves authentic connections.
               Not just swipes. Not just matches. Real people, real connections."

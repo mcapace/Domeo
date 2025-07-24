@@ -8,12 +8,28 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
+      },
+      fontSize: {
+        '7xl': ['4.5rem', { lineHeight: '1' }],
+        '8xl': ['6rem', { lineHeight: '1' }],
+        '9xl': ['8rem', { lineHeight: '1' }],
+      },
+      fontWeight: {
+        light: '300',
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+      },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out forwards',
         'fade-up': 'fadeUp 0.8s ease-out forwards',
         'slide-down': 'slideDown 0.5s ease-out',
         'scale-in': 'scaleIn 0.5s ease-out forwards',
         'float': 'float 6s ease-in-out infinite',
+        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         fadeIn: {
