@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/Navigation';
-import TrustBar from '@/components/TrustBar';
+import ConditionalTrustBar from '@/components/ConditionalTrustBar';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -38,7 +38,7 @@ export default function RootLayout({
         </div>
         
         <Navigation />
-        <TrustBar />
+        <ConditionalTrustBar />
         <main>{children}</main>
       </body>
     </html>

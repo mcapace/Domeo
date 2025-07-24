@@ -45,9 +45,12 @@ export default function Navigation() {
             >
               Membership
             </Link>
-            <button className="px-7 py-2.5 bg-gray-900 text-white rounded-full text-[15px] font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg tracking-[-0.01em]">
+            <Link 
+              href="/auth/signin" 
+              className="px-7 py-2.5 bg-gray-900 text-white rounded-full text-[15px] font-medium hover:bg-gray-800 transition-all duration-300 hover:shadow-lg tracking-[-0.01em]"
+            >
               Sign In
-            </button>
+            </Link>
           </div>
         </div>
       </div>
