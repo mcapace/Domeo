@@ -1,122 +1,68 @@
-# Domeo - Sophisticated Dating Platform
+# Domeo - Privacy-First Social Platform
 
-A premium dating platform with 5 distinct communities (domes) where users create one verified profile to access multiple purpose-driven spaces.
+A modern social platform built with Next.js that emphasizes privacy and user control through its unique "dome" system.
 
-## 🎯 Project Overview
+## 🚀 Features
 
-Domeo redefines online connections through purpose-driven communities. Unlike traditional dating apps, Domeo offers 5 distinct "domes" - specialized spaces for different types of relationships and connections.
+### 🔒 Privacy-First Design
+- **Dome Separation**: Complete data isolation between different social contexts
+- **Granular Privacy Controls**: Fine-tuned privacy settings for each dome
+- **Anonymous Mode**: Enhanced privacy options for sensitive interactions
+- **Data Control**: Export and delete your data at any time
 
-### The Five Domes
-- **Connect** - Traditional dating and romantic connections
-- **Explore** - Alternative lifestyles and non-traditional relationships  
-- **Social** - Friendships and platonic connections
-- **Professional** - Networking and career connections
-- **Private** - Discreet connections with enhanced privacy
+### 🏛️ Dome System
+- **Connect**: Personal relationships and close connections
+- **Explore**: Discovery and new connections
+- **Social**: Casual social interactions
+- **Professional**: Work and career networking
+- **Private**: Maximum privacy and anonymity
 
-## ✨ Current Features
+### ⚙️ Comprehensive Settings
+- **Privacy & Security**: Complete control over profile visibility and activity
+- **Account Management**: Profile editing and account preferences
+- **Notifications**: Customizable notification preferences
+- **Safety Features**: Block management and safety tools
+- **Billing & Subscription**: Payment and subscription management
+- **Help & Support**: Resources and support options
 
-### ✅ Completed
-- **Premium Homepage** - Sophisticated marketing site with trust indicators
-- **Complete Authentication System** - Multi-step signup with social login
-- **Design System** - Monochrome design with custom SVG icons
-- **Database Integration** - PostgreSQL with Prisma ORM
-- **Social Authentication** - Google, Apple, Facebook integration
-- **User Management** - Registration, verification, dome selection
-- **Responsive Design** - Mobile-first approach
-- **Dashboard System** - Complete dashboard with dome switcher and navigation
-- **Profile Management** - Comprehensive profile creation and editing interface
-- **Matching System** - Swipe-based matching with detailed profiles
-- **Messaging System** - Full-featured messaging with multiple content types
-- **Enhanced UI/UX** - Consistent navigation, improved styling, and accessibility
-- **Icon System** - Updated dome icons with heart (connect) and lock (private)
+## 🛠️ Technology Stack
 
-### 🔲 In Progress
-- Advanced matching algorithms
-- Premium features and subscriptions
-- Analytics and insights
-- Mobile app development
+- **Framework**: Next.js 15.4.3
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Authentication**: NextAuth.js
+- **Database**: PostgreSQL with Prisma
+- **Icons**: Custom SVG icon system
 
-## 🚀 Getting Started
+## 📦 Installation
 
-### Prerequisites
-- Node.js 18+ 
-- PostgreSQL database
-- Social OAuth credentials (Google, Apple, Facebook)
-
-### Installation
-
-1. **Clone the repository**
 ```bash
+# Clone the repository
 git clone <repository-url>
 cd domeo-new
-```
 
-2. **Install dependencies**
-```bash
+# Install dependencies
 npm install
-```
 
-3. **Set up environment variables**
-```bash
+# Set up environment variables
 cp .env.example .env.local
-```
 
-Add your environment variables:
-```env
-# NextAuth Configuration
-NEXTAUTH_URL=http://localhost:3006
-NEXTAUTH_SECRET=your-super-secret-key
-
-# Database
-DATABASE_URL="postgresql://postgres:password@localhost:5432/domeo_dev"
-
-# OAuth Providers
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-APPLE_ID=your-apple-service-id
-APPLE_SECRET=your-generated-jwt-token
-APPLE_TEAM_ID=your-team-id
-FACEBOOK_CLIENT_ID=your-facebook-app-id
-FACEBOOK_CLIENT_SECRET=your-facebook-app-secret
-NEXT_PUBLIC_FACEBOOK_APP_ID=your-facebook-app-id
-```
-
-4. **Set up the database**
-```bash
-npx prisma generate
-npx prisma db push
-npm run db:seed
-```
-
-5. **Start the development server**
-```bash
+# Run development server
 npm run dev
 ```
 
-Open [http://localhost:3006](http://localhost:3006) with your browser to see the result.
+The application will be available at `http://localhost:3006`
 
-## 🛠 Tech Stack
+## 🔧 Environment Variables
 
-### Frontend
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Icons**: Custom SVG components
-- **Authentication**: NextAuth.js
-- **State Management**: React Hooks
-- **Media Handling**: File API, MediaRecorder API, Geolocation API
+Create a `.env.local` file with the following variables:
 
-### Backend
-- **Database**: PostgreSQL with Prisma ORM
-- **API**: Next.js API routes
-- **Authentication**: NextAuth.js with multiple providers
-- **File Storage**: Cloudinary (planned)
-
-### Development Tools
-- **Package Manager**: npm
-- **Linting**: ESLint
-- **Formatting**: Prettier
-- **Database**: Prisma Studio
+```env
+NEXTAUTH_SECRET=your-secret-key
+DATABASE_URL=your-database-url
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
 
 ## 📁 Project Structure
 
@@ -124,144 +70,95 @@ Open [http://localhost:3006](http://localhost:3006) with your browser to see the
 domeo-new/
 ├── src/
 │   ├── app/                    # Next.js App Router
+│   │   ├── settings/          # Settings page with privacy controls
+│   │   ├── dashboard/         # Main dashboard
 │   │   ├── auth/              # Authentication pages
-│   │   ├── api/               # API routes
-│   │   ├── dashboard/         # Dashboard pages
-│   │   ├── matches/           # Matches listing
-│   │   ├── messages/          # Messaging system
-│   │   └── page.tsx           # Homepage
+│   │   ├── profile/           # Profile management
+│   │   └── messages/          # Messaging system
 │   ├── components/            # Reusable components
-│   │   ├── DashboardNavigation.tsx  # Dashboard navigation
-│   │   ├── SwipeCard.tsx      # Profile swipe cards
-│   │   ├── SwipeStack.tsx     # Swipe stack management
-│   │   └── ...                # Other components
-│   ├── lib/                   # Utilities and configurations
-│   └── types/                 # TypeScript definitions
-├── prisma/                    # Database schema and migrations
-├── public/                    # Static assets
-└── docs/                      # Documentation
+│   └── lib/                   # Utility functions
+├── docs/                      # Documentation
+│   ├── SETTINGS_PAGE.md      # Settings page documentation
+│   ├── CHANGELOG.md          # Project changelog
+│   └── DEVELOPMENT.md        # Development guide
+└── public/                    # Static assets
 ```
 
 ## 🎨 Design System
 
-### Color Palette
-- **Primary**: Purple (#6B46C1) - domeo-accent
-- **Accent**: Pink (#EC4899) for status and focus
-- **Neutrals**: Sophisticated gray scale (domeo-gray-50 to domeo-gray-900)
-- **Typography**: Inter font family
-- **Verified Badges**: Green (#10B981) for trust indicators
+### Icon System
+- **Monochromatic Design**: Consistent icon styling throughout
+- **SVG Icons**: Scalable vector graphics for crisp display
+- **Accessibility**: Proper labels and screen reader support
 
-### Key Principles
-- Monochrome base with single accent color
-- No emojis - All custom SVG icons
-- Minimal animations - Subtle, elegant transitions
-- Generous white space - Premium feel
-- Thin line icons - strokeWidth="1" for elegance
-- Consistent navigation styling across all pages
+### Layout Patterns
+- **Sticky Navigation**: Persistent navigation with proper positioning
+- **Responsive Design**: Mobile-first approach with breakpoint optimization
+- **Privacy-First UI**: Clear privacy messaging and controls
 
-## 🌟 Key Features
+## 🔐 Privacy Features
 
-### Authentication System
-- Multi-step signup process
-- Email and phone verification
-- Social login (Google, Apple, Facebook)
-- Password reset flow
-- Session management
+### Dome-Specific Privacy
+- **Individual Controls**: Privacy settings for each dome type
+- **Contact Hiding**: Hide from phone contacts per dome
+- **Anonymous Mode**: Enhanced privacy for Private dome
+- **Block Management**: Comprehensive blocking across all domes
 
-### Dashboard & Navigation
-- **Dome Switcher** - Seamless switching between 5 different communities
-- **Privacy Notices** - Context-aware privacy information for each dome
-- **Consistent Navigation** - Unified styling across homepage and dashboard
-- **Responsive Design** - Mobile-first approach with tablet and desktop optimization
+### Activity Privacy
+- **Profile Visibility**: Control who can see your profile
+- **Last Active**: Toggle visibility of online status
+- **Distance**: Control location-based features
+- **Read Receipts**: Manage message read status
 
-### Matching System
-- **Swipe Interface** - Intuitive left/right swipe for like/pass
-- **Profile Cards** - Rich profile display with photos, bio, and preferences
-- **Verified Badges** - Green checkmarks for verified profiles
-- **Match Notifications** - Real-time match alerts and messaging
+### Data Control
+- **Export Data**: Download your data in standard formats
+- **Delete Account**: Complete account deletion with data removal
+- **Privacy Education**: Clear information about data handling
 
-### Messaging System
-- **Multi-Content Support** - Text, images, date proposals, location sharing, voice notes
-- **Image Upload** - Drag-and-drop image sharing with preview
-- **Date Proposals** - Structured date/time/location proposals with accept/decline
-- **Location Sharing** - GPS-based location sharing with map integration
-- **Voice Notes** - Audio recording and playback functionality
-- **Real-time Updates** - Live message status and typing indicators
-- **Safety Features** - Three-dot menu with safety options and reporting
+## 🚀 Getting Started
 
-### User Experience
-- **Responsive Design** - Optimized for mobile, tablet, and desktop
-- **Smooth Animations** - Elegant transitions and micro-interactions
-- **Accessibility** - WCAG compliant with keyboard navigation
-- **Premium Feel** - Sophisticated design matching high-end dating platforms
-- **Performance** - Optimized loading and smooth interactions
+### For Users
+1. Visit the application
+2. Sign up with email or Google
+3. Explore different domes
+4. Customize privacy settings in `/settings`
+5. Connect with others while maintaining privacy
 
-### Backend Features
-- **User Management** - Complete user registration and profile management
-- **Dome System** - Multi-community architecture with privacy controls
-- **Database Integration** - Robust PostgreSQL schema with Prisma ORM
-- **API Endpoints** - RESTful APIs for all platform features
-- **File Handling** - Image upload and media management
-- **Geolocation** - Location-based features and privacy controls
+### For Developers
+1. Follow the [Development Guide](docs/DEVELOPMENT.md)
+2. Review the [Settings Page Documentation](docs/SETTINGS_PAGE.md)
+3. Check the [Changelog](docs/CHANGELOG.md) for recent updates
+4. Contribute following the contribution guidelines
 
 ## 📚 Documentation
 
-- **[Project Documentation](./PROJECT_DOCUMENTATION.md)** - Complete feature overview
-- **[Project Bible](./DOMEO_PROJECT_BIBLE.md)** - Technical architecture and roadmap
-- **[Integration Setup](./FULL_INTEGRATION_SETUP.md)** - Backend setup guide
-- **[OAuth Setup Guides](./GOOGLE_OAUTH_SETUP.md)** - Social authentication setup
-
-## 🔧 Available Scripts
-
-```bash
-# Development
-npm run dev              # Start development server (port 3006)
-npm run build            # Build for production
-npm run start            # Start production server
-npm run lint             # Run ESLint
-
-# Database
-npm run db:generate      # Generate Prisma client
-npm run db:push          # Push schema to database
-npm run db:seed          # Seed database with initial data
-
-# Apple OAuth
-npm run apple:generate-secret  # Generate Apple JWT token
-```
-
-## 🆕 Recent Updates
-
-### Latest Release (December 2024)
-- ✅ **Complete Messaging System** - Full-featured chat with multimedia support
-- ✅ **Enhanced Navigation** - Consistent styling across all navigation bars
-- ✅ **UI Improvements** - Smaller logos, green verified badges, purple accent colors
-- ✅ **Mobile Optimization** - All features work seamlessly on mobile devices
-- ✅ **Safety Features** - Comprehensive safety menu and reporting system
-- ✅ **Performance Optimizations** - Faster loading and smoother interactions
-- ✅ **Profile Creation Interface** - Comprehensive profile editing with dome-specific settings
-- ✅ **Icon Updates** - Heart icon for connect dome, lock icon for private dome
-- ✅ **Sticky Navigation** - Profile edit sidebar stays in place during scrolling
+- **[Settings Page](docs/SETTINGS_PAGE.md)**: Comprehensive guide to the settings system
+- **[Development Guide](docs/DEVELOPMENT.md)**: Development setup and guidelines
+- **[Changelog](docs/CHANGELOG.md)**: Project history and updates
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+We welcome contributions! Please see our [Development Guide](docs/DEVELOPMENT.md) for details on:
+
+- Setting up the development environment
+- Code style guidelines
+- Testing requirements
+- Pull request process
 
 ## 📄 License
 
-This project is proprietary software. All rights reserved.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🆘 Support
+## 🔗 Links
 
-For support and questions:
-- Check the [documentation](./PROJECT_DOCUMENTATION.md)
-- Review the [setup guides](./FULL_INTEGRATION_SETUP.md)
-- Open an issue for bugs or feature requests
+- **Live Application**: [Coming Soon]
+- **Documentation**: [docs/](docs/)
+- **Issues**: [GitHub Issues]
+- **Discussions**: [GitHub Discussions]
 
----
+## 🙏 Acknowledgments
 
-**Last Updated**: December 2024  
-**Status**: Core platform complete with messaging, matching, and dashboard systems
+- Next.js team for the amazing framework
+- Tailwind CSS for the utility-first styling
+- NextAuth.js for secure authentication
+- The privacy and security community for best practices
