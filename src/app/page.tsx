@@ -26,11 +26,11 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-16 overflow-hidden">
-        {/* More subtle background gradients */}
+      <section className="relative min-h-[90vh] flex items-center justify-center px-6 md:px-12 pt-32 md:pt-40 pb-16 md:pb-20 overflow-hidden">
+        {/* Ultra-subtle background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/3 -left-64 w-[600px] h-[600px] bg-pink-300/10 rounded-full filter blur-[120px]"></div>
-          <div className="absolute bottom-1/3 -right-64 w-[600px] h-[600px] bg-purple-300/10 rounded-full filter blur-[120px]"></div>
+          <div className="absolute top-1/3 -left-96 w-[800px] h-[800px] bg-pink-200/[0.08] rounded-full filter blur-[150px]"></div>
+          <div className="absolute bottom-1/3 -right-96 w-[800px] h-[800px] bg-purple-200/[0.08] rounded-full filter blur-[150px]"></div>
         </div>
         
         <div className="w-full max-w-5xl mx-auto text-center relative z-10">
@@ -38,75 +38,77 @@ export default function Home() {
             <Logo size="xl" className="mx-auto" linkToHome={false} />
           </div>
           
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight text-gray-900 tracking-[-0.03em] leading-[0.85] mb-12 opacity-0 animate-fade-up animate-delay-200">
+          <h1 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] xl:text-[7rem] 2xl:text-[8rem] font-extralight text-gray-900 tracking-[-0.04em] leading-[0.85] mb-8 md:mb-12 opacity-0 animate-fade-up animate-delay-200">
             Your Domes<br />
-            <span className="font-light bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-block">
+            <span className="font-light bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-block bg-[length:200%_auto] animate-gradient">
               Await
             </span>
           </h1>
           
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 font-light max-w-3xl mx-auto mb-16 leading-relaxed opacity-0 animate-fade-up animate-delay-400 tracking-[-0.01em]">
+          <p className="text-[16px] sm:text-lg md:text-xl lg:text-2xl xl:text-[28px] text-gray-600 font-light max-w-3xl mx-auto mb-12 md:mb-16 leading-[1.5] opacity-0 animate-fade-up animate-delay-400 tracking-[-0.01em]">
             One profile. Five communities. Endless authentic connections.
           </p>
           
-          <div className="opacity-0 animate-fade-up animate-delay-600 space-y-6">
-            <button className="group relative px-16 py-6 bg-gray-900 text-white rounded-full font-medium text-lg overflow-hidden transition-all duration-500 hover:bg-gray-800 transform hover:scale-[1.02] hover:shadow-2xl">
-              <span className="relative z-10">Claim Founding Membership</span>
+          <div className="opacity-0 animate-fade-up animate-delay-600">
+            <button className="group relative inline-flex items-center justify-center px-8 md:px-16 py-4 md:py-[22px] bg-gray-900 text-white rounded-full font-medium text-[16px] md:text-[17px] overflow-hidden transition-all duration-500 hover:bg-gray-800 transform hover:scale-[1.02] hover:shadow-2xl active:scale-[0.98] min-h-[44px] md:min-h-0">
+              <span className="relative z-10 tracking-[-0.01em]">
+                Claim Founding Membership
+              </span>
+              {/* Shimmer effect on hover */}
+              <div className="absolute inset-0 -top-2 -bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 group-hover:animate-shimmer"></div>
+              </div>
             </button>
-            <p className="text-gray-600 font-light">
+            <p className="mt-8 text-[15px] text-gray-600 font-light tracking-[-0.01em]">
               <span className="text-green-600 font-medium">3 months free</span> for founding members • Then $29/mo
             </p>
-          </div>
-        </div>
-        
-        {/* More elegant scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in animate-delay-800">
-          <div className="w-[30px] h-[50px] border-2 border-gray-300/50 rounded-full flex justify-center p-2">
-            <div className="w-1 h-2 bg-gray-400 rounded-full animate-bounce"></div>
           </div>
         </div>
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-28 bg-gradient-to-b from-white via-gray-50/30 to-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
+      <section className="py-20 md:py-24 bg-gradient-to-b from-white via-gray-50/20 to-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
             {[
               { 
                 number: '5,000', 
-                label: 'Founding members only',
+                label: 'FOUNDING MEMBERS ONLY',
                 icon: '🎯'
               },
               { 
                 number: '100%', 
-                label: 'Verified profiles',
+                label: 'VERIFIED PROFILES',
                 icon: '✓'
               },
               { 
                 number: '5', 
-                label: 'Unique communities',
+                label: 'UNIQUE COMMUNITIES',
                 icon: '🏠'
               },
               { 
                 number: '2024', 
-                label: 'Fresh start to dating',
+                label: 'FRESH START TO DATING',
                 icon: '✨'
               }
             ].map((stat, index) => (
               <div 
                 key={index} 
-                className="text-center group animate-on-scroll"
+                className="text-center group animate-on-scroll relative"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="text-2xl mb-6 opacity-40 group-hover:opacity-70 transition-all duration-500">
-                  {stat.icon}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl"></div>
+                <div className="relative">
+                  <div className="text-2xl mb-6 opacity-30 group-hover:opacity-60 transition-all duration-500 transform group-hover:scale-110">
+                    {stat.icon}
+                  </div>
+                  <p className="text-[3.5rem] md:text-[4rem] font-extralight text-gray-900 mb-4 tracking-[-0.03em] transition-all duration-300">
+                    {stat.number}
+                  </p>
+                  <p className="text-[11px] text-gray-500 font-medium tracking-[0.15em] uppercase">
+                    {stat.label}
+                  </p>
                 </div>
-                <p className="text-5xl md:text-6xl font-extralight text-gray-900 mb-3 tracking-[-0.02em] transition-all duration-300 group-hover:scale-105">
-                  {stat.number}
-                </p>
-                <p className="text-sm text-gray-500 font-light tracking-wide uppercase">
-                  {stat.label}
-                </p>
               </div>
             ))}
           </div>
@@ -114,19 +116,19 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-36 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="text-center mb-24 animate-on-scroll">
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
+            <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9]">
               How Domeo Works
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Unlike apps that force you into one box, Domeo recognizes you're multifaceted. 
+            <p className="text-[16px] md:text-[18px] lg:text-[20px] text-gray-600 font-light leading-[1.6] tracking-[-0.01em] max-w-3xl mx-auto">
+              Unlike apps that force you into one box, Domeo recognizes you're multifaceted.<br />
               One verified profile gives you access to five distinct communities.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 lg:gap-20">
             {[
               {
                 number: '1',
@@ -144,17 +146,20 @@ export default function Home() {
                 description: 'Be yourself in each space. Your connections in one dome stay private from others.'
               }
             ].map((step, index) => (
-              <div key={index} className="text-center animate-on-scroll" style={{ transitionDelay: `${index * 200}ms` }}>
-                <div className="relative group mx-auto w-24 h-24 mb-8">
-                  <div className="absolute inset-0 bg-gradient-to-br from-pink-100 to-purple-100 rounded-full transform group-hover:scale-110 transition-transform duration-300"></div>
+              <div key={index} className="text-center animate-on-scroll group" style={{ transitionDelay: `${index * 200}ms` }}>
+                <div className="relative mx-auto w-28 h-28 mb-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-pink-100/80 to-purple-100/80 rounded-full transform group-hover:scale-110 transition-all duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-pink-200/40 to-purple-200/40 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                   <div className="relative w-full h-full rounded-full flex items-center justify-center">
-                    <span className="text-4xl font-light gradient-text">
+                    <span className="text-[2.5rem] font-extralight bg-gradient-to-br from-pink-500 to-purple-600 bg-clip-text text-transparent">
                       {step.number}
                     </span>
                   </div>
                 </div>
-                <h3 className="text-2xl font-normal mb-4">{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                <h3 className="text-[22px] font-medium mb-4 tracking-[-0.01em]">{step.title}</h3>
+                <p className="text-[15px] text-gray-600 font-light leading-relaxed tracking-[-0.01em] max-w-xs mx-auto">
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
@@ -162,18 +167,18 @@ export default function Home() {
       </section>
 
       {/* Five Domes Section */}
-      <section className="py-36 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-20 md:py-36 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="text-center mb-24 animate-on-scroll">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-gray-900 mb-8 tracking-[-0.02em]">
+            <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9]">
               Five spaces for every side of you
             </h2>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-[16px] md:text-[18px] lg:text-[20px] text-gray-600 font-light leading-[1.6] tracking-[-0.01em] max-w-3xl mx-auto">
               Each dome is a curated community with its own culture and purpose.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-12">
             {[
               {
                 name: 'Connect',
@@ -242,14 +247,14 @@ export default function Home() {
       </section>
 
       {/* Comparison Section */}
-      <section className="py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-center text-gray-900 mb-20 animate-on-scroll tracking-[-0.02em]">
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-center text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9] animate-on-scroll">
             Dating apps weren't built for real life
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-gray-50 rounded-3xl p-12 animate-on-scroll hover-lift border border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="bg-gray-50 rounded-3xl p-8 md:p-12 animate-on-scroll hover-lift border border-gray-100">
               <h3 className="text-2xl font-light mb-8 text-gray-600">The Old Way</h3>
               <div className="space-y-6">
                 {[
@@ -271,7 +276,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-purple-50 via-pink-50/50 to-purple-50 rounded-3xl p-12 animate-on-scroll hover-lift border border-purple-100">
+            <div className="bg-gradient-to-br from-purple-50 via-pink-50/50 to-purple-50 rounded-3xl p-8 md:p-12 animate-on-scroll hover-lift border border-purple-100">
               <h3 className="text-2xl font-light mb-8 text-gray-900">The Domeo Way</h3>
               <div className="space-y-6">
                 {[
@@ -299,40 +304,32 @@ export default function Home() {
       {/* Everyone Welcome / Everyone Verified */}
       <section className="py-0">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="bg-white py-36 px-12 md:px-24 animate-on-scroll group hover:bg-gray-50 transition-colors duration-500">
-            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight group-hover:scale-105 transition-transform duration-500">
+          <div className="bg-white py-20 md:py-36 px-6 md:px-12 lg:px-24 animate-on-scroll group hover:bg-gray-50 transition-colors duration-500">
+            <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9] group-hover:scale-105 transition-transform duration-500">
               Everyone<br />Welcome
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-lg mb-8 group-hover:text-gray-700 transition-colors duration-500">
+            <p className="text-[16px] md:text-[18px] lg:text-[20px] text-gray-600 font-light leading-[1.6] tracking-[-0.01em] max-w-lg mb-8 group-hover:text-gray-700 transition-colors duration-500">
               All orientations, all genders, all relationship styles. Your authentic self belongs here.
             </p>
-            <div className="flex flex-wrap gap-3">
-              {['LGBTQ+ Inclusive', 'Non-binary Friendly', 'Poly & ENM Welcome'].map((tag, index) => (
-                <span 
-                  key={tag} 
-                  className="text-sm bg-gray-100 px-4 py-2 rounded-full hover:bg-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer"
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                >
+            <div className="flex flex-wrap gap-3 justify-center">
+              {['LGBTQ+ Inclusive', 'Non-binary Friendly', 'Poly & ENM Welcome'].map((tag) => (
+                <span key={tag} className="text-[13px] bg-gray-100 hover:bg-gray-200 px-4 md:px-5 py-3 md:py-2.5 rounded-full font-medium tracking-wide transition-all duration-300 cursor-default min-h-[44px] md:min-h-0 flex items-center justify-center">
                   {tag}
                 </span>
               ))}
             </div>
           </div>
           
-          <div className="bg-white py-36 px-12 md:px-24 animate-on-scroll group hover:bg-gray-50 transition-colors duration-500">
-            <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-8 leading-tight group-hover:scale-105 transition-transform duration-500">
+          <div className="bg-white py-20 md:py-36 px-6 md:px-12 lg:px-24 animate-on-scroll group hover:bg-gray-50 transition-colors duration-500">
+            <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9] group-hover:scale-105 transition-transform duration-500">
               Everyone<br />Verified
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed max-w-lg mb-8 group-hover:text-gray-700 transition-colors duration-500">
+            <p className="text-[16px] md:text-[18px] lg:text-[20px] text-gray-600 font-light leading-[1.6] tracking-[-0.01em] max-w-lg mb-8 group-hover:text-gray-700 transition-colors duration-500">
               AI and human review for every member. No exceptions. Connect with confidence.
             </p>
-            <div className="flex flex-wrap gap-3">
-              {['Photo Verification', 'ID Confirmation', '0% Fake Profiles'].map((tag, index) => (
-                <span 
-                  key={tag} 
-                  className="text-sm bg-gray-100 px-4 py-2 rounded-full hover:bg-gray-200 hover:scale-105 transition-all duration-300 cursor-pointer"
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                >
+            <div className="flex flex-wrap gap-3 justify-center">
+              {['Photo Verification', 'ID Confirmation', '0% Fake Profiles'].map((tag) => (
+                <span key={tag} className="text-[13px] bg-gray-100 hover:bg-gray-200 px-4 md:px-5 py-3 md:py-2.5 rounded-full font-medium tracking-wide transition-all duration-300 cursor-default min-h-[44px] md:min-h-0 flex items-center justify-center">
                   {tag}
                 </span>
               ))}
@@ -341,19 +338,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-32 bg-gradient-to-b from-white to-gray-50/50">
-        <div className="max-w-4xl mx-auto px-6">
+      {/* Testimonials */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="text-center mb-20 animate-on-scroll">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-gray-900 mb-6 tracking-[-0.02em]">
+            <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9]">
               Real stories from real people
             </h2>
-            <p className="text-xl text-gray-600 font-light leading-relaxed">
-              See how Domeo is changing the way people connect
+            <p className="text-[16px] md:text-[18px] lg:text-[20px] text-gray-600 font-light leading-[1.6] tracking-[-0.01em]">
+              See how Domeo is changing the way people connect.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {[
               {
                 quote: "Finally found a community that understands ENM. The Explore dome changed everything for me.",
@@ -362,7 +359,7 @@ export default function Home() {
               },
               {
                 quote: "No more awkward conversations about what I'm looking for. Each dome has a clear purpose.",
-                author: "Maya, 28",
+                author: "Maya, 28", 
                 location: "Austin"
               },
               {
@@ -371,19 +368,15 @@ export default function Home() {
                 location: "Seattle"
               }
             ].map((testimonial, index) => (
-              <div key={index} className="group animate-on-scroll" style={{ transitionDelay: `${index * 200}ms` }}>
-                <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover-lift transition-all duration-300 group-hover:shadow-lg">
-                  <div className="mb-6">
-                    <svg className="w-8 h-8 text-pink-400 opacity-60" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                    </svg>
-                  </div>
-                  <blockquote className="text-gray-700 font-light leading-relaxed mb-6 text-lg">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  <div className="text-sm text-gray-500 font-light">
-                    {testimonial.author} • {testimonial.location}
-                  </div>
+              <div key={index} className="animate-on-scroll" style={{ transitionDelay: `${index * 100}ms` }}>
+                <div className="bg-gray-50/50 rounded-2xl p-6 md:p-10 h-full flex flex-col">
+                  <div className="text-5xl text-gray-300 mb-4 font-serif">"</div>
+                  <p className="text-[17px] font-light text-gray-800 leading-relaxed mb-8 flex-grow tracking-[-0.01em]">
+                    {testimonial.quote}
+                  </p>
+                  <p className="text-[14px] text-gray-600">
+                    <span className="font-medium">{testimonial.author}</span> • <span className="text-gray-500">{testimonial.location}</span>
+                  </p>
                 </div>
               </div>
             ))}
@@ -392,9 +385,9 @@ export default function Home() {
       </section>
 
       {/* Founding Member Section */}
-      <section className="py-36 bg-gradient-to-br from-purple-50 via-white to-pink-50">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="bg-gradient-to-r from-pink-500 to-purple-600 rounded-3xl p-12 text-white text-center relative overflow-hidden animate-on-scroll">
+      <section className="py-20 md:py-36 bg-gradient-to-br from-purple-50 via-white to-pink-50">
+        <div className="max-w-5xl mx-auto px-6 md:px-12">
+                      <div className="bg-gradient-to-r from-pink-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white text-center relative overflow-hidden animate-on-scroll">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white/20"></div>
@@ -425,8 +418,14 @@ export default function Home() {
                 </div>
               </div>
               
-              <button className="px-12 py-5 bg-white text-gray-900 rounded-full text-lg font-medium hover-lift">
-                Claim Your Spot
+              <button className="group relative inline-flex items-center justify-center px-8 md:px-12 py-4 md:py-5 bg-white text-gray-900 rounded-full text-[16px] md:text-lg font-medium overflow-hidden transition-all duration-500 hover:bg-gray-50 transform hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] min-h-[44px] md:min-h-0">
+                <span className="relative z-10">
+                  Claim Your Spot
+                </span>
+                {/* Shimmer effect on hover */}
+                <div className="absolute inset-0 -top-2 -bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200/20 to-transparent -skew-x-12 group-hover:animate-shimmer"></div>
+                </div>
               </button>
               
               <p className="mt-6 text-sm opacity-80">
@@ -455,18 +454,24 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-36 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6 animate-on-scroll">
+      <section className="py-20 md:py-36 bg-white">
+        <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
+          <h2 className="text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] font-extralight text-gray-900 mb-6 tracking-[-0.04em] leading-[0.9] animate-on-scroll">
             Your people are waiting
           </h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto animate-on-scroll">
+          <p className="text-[16px] md:text-[18px] lg:text-[20px] text-gray-600 font-light leading-[1.6] tracking-[-0.01em] mb-12 max-w-2xl mx-auto animate-on-scroll">
             In a world of endless swiping, find something real. Join 2,153 founding members building a better way to connect.
           </p>
           
           <div className="animate-on-scroll">
-            <button className="px-12 py-5 text-lg bg-black text-white rounded-full font-medium btn-premium hover:scale-105 hover:shadow-2xl">
-              Start Free for 3 Months
+            <button className="group relative inline-flex items-center justify-center px-8 md:px-12 py-4 md:py-5 text-[16px] md:text-lg bg-black text-white rounded-full font-medium overflow-hidden transition-all duration-500 hover:bg-gray-800 transform hover:scale-[1.02] hover:shadow-2xl active:scale-[0.98] min-h-[44px] md:min-h-0">
+              <span className="relative z-10">
+                Start Free for 3 Months
+              </span>
+              {/* Shimmer effect on hover */}
+              <div className="absolute inset-0 -top-2 -bottom-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 group-hover:animate-shimmer"></div>
+              </div>
             </button>
             
             <p className="mt-8 text-pink-500 font-medium animate-pulse">
@@ -486,8 +491,8 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-6">
+      <footer className="bg-gray-900 text-white py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div className="col-span-1">
               <Logo theme="light" size="sm" className="mb-4" />
