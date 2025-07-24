@@ -17,10 +17,20 @@ export const authOptions: NextAuthOptions = {
     AppleProvider({
       clientId: process.env.APPLE_ID!,
       clientSecret: process.env.APPLE_SECRET!,
+      authorization: {
+        params: {
+          scope: 'name email',
+        },
+      },
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID!,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          scope: 'email public_profile',
+        },
+      },
     }),
     CredentialsProvider({
       name: "credentials",
