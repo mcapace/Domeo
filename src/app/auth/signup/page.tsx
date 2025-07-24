@@ -535,7 +535,7 @@ export default function SignUp() {
 
             <p className="text-[11px] text-domeo-gray-500 mt-8">
               Your information is encrypted and stored securely. Read our{' '}
-              <Link href="/privacy" className="text-domeo-accent hover:underline">
+              <Link href="/settings" className="text-domeo-accent hover:underline">
                 privacy policy
               </Link>
             </p>

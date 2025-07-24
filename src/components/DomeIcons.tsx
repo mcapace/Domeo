@@ -9,9 +9,8 @@ export const DomeIcons = {
   
   explore: (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 2L19.09 11.91L29 15L19.09 18.09L16 28L12.91 18.09L3 15L12.91 11.91L16 2Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round"/>
-      <circle cx="24" cy="8" r="1.5" stroke="currentColor" strokeWidth="1"/>
-      <circle cx="8" cy="24" r="1.5" stroke="currentColor" strokeWidth="1"/>
+      <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" stroke="currentColor" strokeWidth="1"/>
+      <circle cx="16" cy="16" r="2" fill="currentColor"/>
     </svg>
   ),
   
@@ -26,17 +25,17 @@ export const DomeIcons = {
   
   professional: (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="8" y="12" width="16" height="12" rx="1" stroke="currentColor" strokeWidth="1"/>
-      <path d="M12 12V10C12 8.89543 12.8954 8 14 8H18C19.1046 8 20 8.89543 20 10V12" stroke="currentColor" strokeWidth="1"/>
-      <path d="M16 18V20" stroke="currentColor" strokeWidth="1"/>
-      <circle cx="16" cy="18" r="1.5" stroke="currentColor" strokeWidth="1"/>
+      <rect x="6" y="10" width="20" height="16" rx="1" stroke="currentColor" strokeWidth="1"/>
+      <path d="M10 10V8C10 6.89543 10.8954 6 12 6H20C21.1046 6 22 6.89543 22 8V10" stroke="currentColor" strokeWidth="1"/>
+      <path d="M16 16V18" stroke="currentColor" strokeWidth="1"/>
+      <circle cx="16" cy="16" r="1.5" stroke="currentColor" strokeWidth="1"/>
     </svg>
   ),
   
   private: (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="14" width="12" height="12" rx="1" stroke="currentColor" strokeWidth="1"/>
-      <path d="M12 14V10C12 8.89543 12.8954 8 14 8H18C19.1046 8 20 8.89543 20 10V14" stroke="currentColor" strokeWidth="1"/>
+      <rect x="8" y="12" width="16" height="16" rx="1" stroke="currentColor" strokeWidth="1"/>
+      <path d="M10 12V8C10 6.89543 10.8954 6 12 6H20C21.1046 6 22 6.89543 22 8V12" stroke="currentColor" strokeWidth="1"/>
       <circle cx="16" cy="20" r="1.5" stroke="currentColor" strokeWidth="1"/>
     </svg>
   ),

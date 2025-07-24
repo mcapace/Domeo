@@ -147,7 +147,7 @@ export default function DashboardNavigation({ activeDome = 'connect', onDomeSwit
             </svg>
             <span className="text-xs text-domeo-gray-600">{currentDome.privacyNote}</span>
           </div>
-          <Link href="/settings/privacy" className="text-xs text-domeo-accent hover:text-domeo-accent/80">
+          <Link href="/settings" className="text-xs text-domeo-accent hover:text-domeo-accent/80">
             Privacy settings →
           </Link>
         </div>
