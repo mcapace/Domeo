@@ -94,7 +94,7 @@ export default function VerifyPhone() {
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className="w-12 h-14 text-center text-2xl font-light border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-domeo-accent transition-colors"
+                className="w-12 h-14 text-center text-2xl font-light border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-pink-400 transition-colors"
                 autoFocus={index === 0}
               />
             ))}

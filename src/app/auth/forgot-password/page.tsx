@@ -116,7 +116,7 @@ export default function ForgotPassword() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-domeo-accent transition-colors"
+                  className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-pink-400 transition-colors"
                   placeholder="you@example.com"
                 />
               </div>
@@ -126,7 +126,7 @@ export default function ForgotPassword() {
                   Phone Number
                 </label>
                 <div className="flex gap-2">
-                  <select className="px-3 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-domeo-accent transition-colors">
+                  <select className="px-3 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-pink-400 transition-colors">
                     <option value="+1">🇺🇸 +1</option>
                     <option value="+44">🇬🇧 +44</option>
                     <option value="+61">🇦🇺 +61</option>
@@ -137,7 +137,7 @@ export default function ForgotPassword() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     required
-                    className="flex-1 px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-domeo-accent transition-colors"
+                    className="flex-1 px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-pink-400 transition-colors"
                     placeholder="(555) 000-0000"
                   />
                 </div>

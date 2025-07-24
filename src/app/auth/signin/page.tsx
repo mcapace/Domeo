@@ -147,7 +147,7 @@ export default function SignIn() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-domeo-accent/20 focus:border-domeo-accent transition-all"
+                    className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400/20 focus:border-pink-400 transition-all"
                     placeholder="you@example.com"
                     required
                   />
@@ -162,7 +162,7 @@ export default function SignIn() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-domeo-accent/20 focus:border-domeo-accent transition-all"
+                    className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400/20 focus:border-pink-400 transition-all"
                     placeholder="••••••••"
                     required
                   />
@@ -172,7 +172,7 @@ export default function SignIn() {
                   <label className="flex items-center cursor-pointer">
                     <input 
                       type="checkbox" 
-                      className="mr-2 rounded border-domeo-gray-300 text-domeo-accent focus:ring-domeo-accent focus:ring-offset-0" 
+                      className="mr-2 rounded border-domeo-gray-300 text-pink-400 focus:ring-pink-400 focus:ring-offset-0" 
                     />
                     <span className="text-sm text-domeo-gray-600">Remember me</span>
                   </label>
@@ -191,7 +191,7 @@ export default function SignIn() {
                     Phone Number
                   </label>
                   <div className="flex gap-2">
-                    <select className="px-3 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-domeo-accent/20 focus:border-domeo-accent transition-all">
+                    <select className="px-3 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400/20 focus:border-pink-400 transition-all">
                       <option value="+1">🇺🇸 +1</option>
                       <option value="+44">🇬🇧 +44</option>
                       <option value="+61">🇦🇺 +61</option>
@@ -202,7 +202,7 @@ export default function SignIn() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="flex-1 px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-domeo-accent/20 focus:border-domeo-accent transition-all"
+                      className="flex-1 px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400/20 focus:border-pink-400 transition-all"
                       placeholder="(555) 000-0000"
                       required
                     />

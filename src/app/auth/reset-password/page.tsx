@@ -99,7 +99,7 @@ export default function ResetPassword() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-domeo-accent transition-colors pr-12"
+                  className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-pink-400 transition-colors pr-12"
                   placeholder="Enter new password"
                 />
                 <button
@@ -156,7 +156,7 @@ export default function ResetPassword() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-domeo-accent transition-colors"
+                className="w-full px-4 py-3 bg-white border border-domeo-gray-200 rounded-lg focus:outline-none focus:border-pink-400 transition-colors"
                 placeholder="Confirm new password"
               />
             </div>
