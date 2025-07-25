@@ -16,6 +16,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Responsive design for mobile and desktop
   - Integration with existing SwipeStack component
 
+- **Profile Preview Page** (`/profile/preview`) - Multi-dome profile preview system
+  - 5 dome-specific profile previews with different content for each dome
+  - Interactive dome selector with visual feedback
+  - Live preview using SwipeCard component for consistency
+  - Collapsible info banner with helpful user guidance
+  - Direct edit links for each dome profile
+  - Responsive design for mobile and desktop
+
 ### Changed
 - **Navigation System** - Updated to provide consistent dashboard navigation across internal pages
   - All internal pages now use dashboard navigation (discover, settings, matches, messages, profile/edit)
@@ -42,15 +50,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Files Changed
 - `src/app/discover/page.tsx` - New discover page implementation
+- `src/app/profile/preview/page.tsx` - New profile preview page implementation
 - `src/components/ConditionalLayout.tsx` - Updated navigation logic
 - `docs/DISCOVER_PAGE.md` - New documentation
 - `docs/NAVIGATION_UPDATE.md` - New documentation
+- `docs/PROFILE_PREVIEW.md` - New documentation
 - `docs/CHANGELOG.md` - This changelog
 
-### Commit
+### Commits
 - **Hash**: `4ea752b`
 - **Message**: "feat: Add discover page with filters and update navigation system"
 - **Files**: 4 files changed, 641 insertions(+), 6 deletions(-)
+
+- **Hash**: `8078cf3`
+- **Message**: "feat: Add profile preview page with multi-dome profile viewing"
+- **Files**: 3 files changed, 360 insertions(+)
 
 ## [Unreleased]
 
