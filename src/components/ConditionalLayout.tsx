@@ -7,19 +7,30 @@ import ConditionalTrustBar from './ConditionalTrustBar';
 
 export default function ConditionalLayout() {
   const pathname = usePathname();
+  
+  // Define internal pages that should use dashboard navigation
+  const internalPages = [
+    '/dashboard',
+    '/messages',
+    '/matches', 
+    '/profile/edit',
+    '/settings',
+    '/discover'
+  ];
+  
+  const isInternalPage = internalPages.some(page => 
+    pathname === page || pathname.startsWith('/messages/')
+  );
+  
   const isDashboard = pathname === '/dashboard';
-  const isMessagesPage = pathname.startsWith('/messages/');
-  const isMatchesPage = pathname === '/matches';
-  const isProfileEditPage = pathname === '/profile/edit';
-  const isSettingsPage = pathname === '/settings';
 
   // Don't show any layout for dashboard
   if (isDashboard) {
     return null;
   }
 
-  // For messages, matches, profile edit, and settings pages, show dashboard navigation but no trust bar or incentive banner
-  if (isMessagesPage || isMatchesPage || isProfileEditPage || isSettingsPage) {
+  // For internal pages, show dashboard navigation but no trust bar or incentive banner
+  if (isInternalPage) {
     return (
       <>
         <DashboardNavigation />
