@@ -21,14 +21,28 @@ export default function ConditionalLayout() {
     '/professional/opportunities'
   ];
   
+  // Define standalone pages that should have no navigation
+  const standalonePages = [
+    '/subscription'
+  ];
+  
   const isInternalPage = internalPages.some(page => 
     pathname === page || pathname.startsWith('/messages/')
+  );
+  
+  const isStandalonePage = standalonePages.some(page => 
+    pathname === page
   );
   
   const isDashboard = pathname === '/dashboard';
 
   // Don't show any layout for dashboard
   if (isDashboard) {
+    return null;
+  }
+
+  // Don't show any navigation for standalone pages
+  if (isStandalonePage) {
     return null;
   }
 
