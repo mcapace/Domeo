@@ -18,8 +18,7 @@ export default function ConditionalLayout() {
     '/settings',
     '/discover',
     '/social/events',
-    '/professional/opportunities',
-    '/subscription'
+    '/professional/opportunities'
   ];
   
   const isInternalPage = internalPages.some(page => 

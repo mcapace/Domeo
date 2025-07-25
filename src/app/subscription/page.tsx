@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const plans = [
   {
@@ -59,9 +60,25 @@ export default function Subscription() {
       <div className="bg-white border-b border-domeo-gray-200">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2">
+              <img 
+                src="/domeo-logo-black.png" 
+                alt="Domeo" 
+                className="h-8 w-auto"
+              />
+            </Link>
+
             <h1 className="text-lg font-medium text-domeo-black">Choose Your Plan</h1>
 
-            <div className="w-16" />
+            <Link 
+              href="/dashboard" 
+              className="flex items-center gap-2 text-domeo-gray-600 hover:text-domeo-black transition-colors"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                <path d="M12 5L7 10L12 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="text-sm">Back to App</span>
+            </Link>
           </div>
         </div>
       </div>

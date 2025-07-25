@@ -39,8 +39,9 @@ The Subscription page (`/subscription`) provides a comprehensive subscription ma
 
 ### Header Section
 - **Page Title**: "Choose Your Plan"
-- **Clean Layout**: Minimal header with centered title
-- **Dashboard Navigation**: Uses consistent dashboard navigation
+- **Domeo Logo**: Links back to homepage
+- **Back to App Link**: Navigation back to dashboard
+- **Public Page Layout**: No internal navigation bar
 
 ### Hero Section
 - **Compelling Headline**: "Join the future of connection"
@@ -110,9 +111,10 @@ const plans = [
 - **Error Handling**: Graceful error handling for failed payments
 
 ### Navigation Integration
-- Added to internal pages list in ConditionalLayout
-- Uses dashboard navigation (no homepage navbar/trust bar)
-- Consistent with other internal pages
+- Public page (not in internal pages list)
+- No dashboard navigation bar
+- Standalone subscription page with logo and back link
+- Links to homepage and dashboard for navigation
 
 ## User Experience
 
@@ -213,7 +215,8 @@ const plans = [
 
 ### Verified Functionality
 - ✅ Page loads correctly at `/subscription`
-- ✅ Dashboard navigation displays properly
+- ✅ Domeo logo displays and links to homepage
+- ✅ Back to App link navigates to dashboard
 - ✅ Plan selection works with visual feedback
 - ✅ Billing period toggle switches between monthly/annual
 - ✅ Price calculations update correctly
