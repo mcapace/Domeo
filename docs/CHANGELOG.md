@@ -40,6 +40,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Poster verification and applicant tracking
   - Sample opportunities across multiple professional categories
 
+- **Subscription Page** (`/subscription`) - Subscription plan selection and payment processing
+  - 2 subscription plans (Founding Member $29/mo, Standard $39/mo)
+  - Monthly and annual billing options with 20% annual discount
+  - Interactive plan cards with feature comparison
+  - Founding member exclusivity with limited spots (2,847 remaining)
+  - Multiple payment methods (Card, Apple Pay, Google Pay)
+  - Dynamic pricing calculation and transparent cost breakdown
+
 ### Changed
 - **Navigation System** - Updated to provide consistent dashboard navigation across internal pages
   - All internal pages now use dashboard navigation (discover, settings, matches, messages, profile/edit)
@@ -69,12 +77,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `src/app/profile/preview/page.tsx` - New profile preview page implementation
 - `src/app/social/events/page.tsx` - New social events page implementation
 - `src/app/professional/opportunities/page.tsx` - New professional opportunities page implementation
+- `src/app/subscription/page.tsx` - New subscription page implementation
 - `src/components/ConditionalLayout.tsx` - Updated navigation logic
 - `docs/DISCOVER_PAGE.md` - New documentation
 - `docs/NAVIGATION_UPDATE.md` - New documentation
 - `docs/PROFILE_PREVIEW.md` - New documentation
 - `docs/SOCIAL_EVENTS.md` - New documentation
 - `docs/PROFESSIONAL_OPPORTUNITIES.md` - New documentation
+- `docs/SUBSCRIPTION_PAGE.md` - New documentation
 - `docs/CHANGELOG.md` - This changelog
 
 ### Commits
@@ -93,6 +103,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hash**: `a6d418f`
 - **Message**: "feat: Add professional opportunities page with opportunity discovery and posting"
 - **Files**: 3 files changed, 555 insertions(+)
+
+- **Hash**: `2d5ca57`
+- **Message**: "feat: Add subscription page with plan selection and payment processing"
+- **Files**: 3 files changed, 556 insertions(+)
 
 ## [Unreleased]
 
