@@ -75,7 +75,7 @@ export default function ForgotPassword() {
             Forgot your password?
           </h1>
           <p className="text-domeo-gray-600 font-light">
-            No worries, we'll send you reset instructions
+            No worries, we&apos;ll send you reset instructions
           </p>
         </div>
 
