@@ -14,6 +14,7 @@ export default function ConditionalLayout() {
     '/messages',
     '/matches', 
     '/profile/edit',
+    '/profile/preview',
     '/settings',
     '/discover'
   ];
