@@ -57,7 +57,7 @@ export default function Subscription() {
   return (
     <div className="min-h-screen bg-domeo-gray-50">
       {/* Page Header */}
-      <div className="bg-white border-b border-domeo-gray-200">
+      <div className="bg-white border-b border-domeo-gray-200 mt-16">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-lg font-medium text-domeo-black">Choose Your Plan</h1>
