@@ -60,14 +60,6 @@ export default function Subscription() {
       <div className="bg-white border-b border-domeo-gray-200">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <img 
-                src="/domeo-logo-black.png" 
-                alt="Domeo" 
-                className="h-8 w-auto"
-              />
-            </Link>
-
             <h1 className="text-lg font-medium text-domeo-black">Choose Your Plan</h1>
 
             <Link 

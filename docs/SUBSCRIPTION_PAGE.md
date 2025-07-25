@@ -111,12 +111,12 @@ const plans = [
 - **Error Handling**: Graceful error handling for failed payments
 
 ### Navigation Integration
-- Standalone page (no navigation elements from main site)
-- No dashboard navigation bar
-- No public navigation bar or trust bar
-- No founding member banner
-- Completely isolated subscription page with logo and back link
-- Links to homepage and dashboard for navigation
+- Public page with full homepage navigation
+- Uses public navigation bar (not dashboard navigation)
+- Includes founding member banner
+- Includes trust bar
+- Custom page header with title and back link
+- Links to dashboard for navigation back to app
 
 ## User Experience
 
@@ -217,8 +217,10 @@ const plans = [
 
 ### Verified Functionality
 - ✅ Page loads correctly at `/subscription`
-- ✅ No navigation conflicts or overlapping elements
-- ✅ Domeo logo displays and links to homepage
+- ✅ Public navigation bar displays correctly
+- ✅ Founding member banner shows at top
+- ✅ Trust bar displays at bottom
+- ✅ Custom page header with title and back link
 - ✅ Back to App link navigates to dashboard
 - ✅ Plan selection works with visual feedback
 - ✅ Billing period toggle switches between monthly/annual
