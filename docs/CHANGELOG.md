@@ -24,6 +24,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Direct edit links for each dome profile
   - Responsive design for mobile and desktop
 
+- **Social Events Page** (`/social/events`) - Event discovery and creation platform
+  - 9 event categories (Outdoor, Food & Drink, Arts & Crafts, etc.)
+  - Event filtering by category with visual feedback
+  - Responsive event grid with detailed event cards
+  - Create event modal with comprehensive form
+  - Organizer verification and attendee capacity tracking
+  - Sample events across multiple activity types
+
 ### Changed
 - **Navigation System** - Updated to provide consistent dashboard navigation across internal pages
   - All internal pages now use dashboard navigation (discover, settings, matches, messages, profile/edit)
@@ -51,10 +59,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Files Changed
 - `src/app/discover/page.tsx` - New discover page implementation
 - `src/app/profile/preview/page.tsx` - New profile preview page implementation
+- `src/app/social/events/page.tsx` - New social events page implementation
 - `src/components/ConditionalLayout.tsx` - Updated navigation logic
 - `docs/DISCOVER_PAGE.md` - New documentation
 - `docs/NAVIGATION_UPDATE.md` - New documentation
 - `docs/PROFILE_PREVIEW.md` - New documentation
+- `docs/SOCIAL_EVENTS.md` - New documentation
 - `docs/CHANGELOG.md` - This changelog
 
 ### Commits
@@ -65,6 +75,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Hash**: `8078cf3`
 - **Message**: "feat: Add profile preview page with multi-dome profile viewing"
 - **Files**: 3 files changed, 360 insertions(+)
+
+- **Hash**: `600be30`
+- **Message**: "feat: Add social events page with event discovery and creation"
+- **Files**: 3 files changed, 560 insertions(+)
 
 ## [Unreleased]
 
