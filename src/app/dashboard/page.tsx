@@ -1,442 +1,409 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { DomeIcons } from '@/components/DomeIcons';
-import Logo from '@/components/Logo';
-import SwipeStack from '@/components/SwipeStack';
-import React from 'react';
+import MobileNav from '@/components/MobileNav';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type DomeType = 'connect' | 'explore' | 'social' | 'professional' | 'private';
 
-interface DomeConfig {
-  id: DomeType;
-  name: string;
-  icon: React.ReactElement;
-  tagline: string;
-  color: string;
-  bgColor: string;
-  borderColor: string;
-  privacyNote: string;
-  quickStats: {
-    primary: { label: string; value: number };
-    secondary: { label: string; value: number };
-    action: { label: string; count?: number };
-  };
-}
-
-const domeConfigs: DomeConfig[] = [
-  {
-    id: 'connect',
-    name: 'Connect',
-    icon: DomeIcons.connect,
-    tagline: 'Find your person',
-    color: 'text-pink-600',
-    bgColor: 'bg-pink-50',
-    borderColor: 'border-pink-200',
-    privacyNote: 'Your dating profile is separate from other domes',
-    quickStats: {
-      primary: { label: 'New Matches', value: 3 },
-      secondary: { label: 'Conversations', value: 5 },
-      action: { label: 'Discover Singles', count: 127 }
-    }
-  },
-  {
-    id: 'explore',
-    name: 'Explore',
-    icon: DomeIcons.explore,
-    tagline: 'Open hearts, open minds',
-    color: 'text-purple-600',
-    bgColor: 'bg-purple-50',
-    borderColor: 'border-purple-200',
-    privacyNote: 'Your kinks & preferences stay in Explore',
-    quickStats: {
-      primary: { label: 'Connections', value: 8 },
-      secondary: { label: 'Events Nearby', value: 4 },
-      action: { label: 'Browse ENM Profiles', count: 89 }
-    }
-  },
-  {
-    id: 'social',
-    name: 'Social',
-    icon: DomeIcons.social,
-    tagline: 'Find your tribe',
-    color: 'text-blue-600',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    privacyNote: 'Platonic connections only in this dome',
-    quickStats: {
-      primary: { label: 'New Friends', value: 12 },
-      secondary: { label: 'Groups Joined', value: 3 },
-      action: { label: 'Discover Events' }
-    }
-  },
-  {
-    id: 'professional',
-    name: 'Professional',
-    icon: DomeIcons.professional,
-    tagline: 'Network with chemistry',
-    color: 'text-gray-700',
-    bgColor: 'bg-gray-50',
-    borderColor: 'border-gray-300',
-    privacyNote: 'Professional info only - no personal dome data',
-    quickStats: {
-      primary: { label: 'Connections', value: 24 },
-      secondary: { label: 'Opportunities', value: 7 },
-      action: { label: 'Find Collaborators' }
-    }
-  },
-  {
-    id: 'private',
-    name: 'Private',
-    icon: DomeIcons.private,
-    tagline: 'Your secrets, protected',
-    color: 'text-white',
-    bgColor: 'bg-domeo-gray-900',
-    borderColor: 'border-domeo-gray-700',
-    privacyNote: 'Anonymous mode - enhanced privacy active',
-    quickStats: {
-      primary: { label: 'Discreet Matches', value: 4 },
-      secondary: { label: 'Active Now', value: 2 },
-      action: { label: 'Browse Privately' }
-    }
-  }
+const domes = [
+  { id: 'connect' as DomeType, name: 'Connect', icon: DomeIcons.connect, color: 'text-pink-600', bgColor: 'bg-pink-50', gradient: 'from-pink-500 to-rose-500' },
+  { id: 'explore' as DomeType, name: 'Explore', icon: DomeIcons.explore, color: 'text-purple-600', bgColor: 'bg-purple-50', gradient: 'from-purple-500 to-indigo-500' },
+  { id: 'social' as DomeType, name: 'Social', icon: DomeIcons.social, color: 'text-blue-600', bgColor: 'bg-blue-50', gradient: 'from-blue-500 to-cyan-500' },
+  { id: 'professional' as DomeType, name: 'Professional', icon: DomeIcons.professional, color: 'text-gray-700', bgColor: 'bg-gray-50', gradient: 'from-gray-600 to-gray-800' },
+  { id: 'private' as DomeType, name: 'Private', icon: DomeIcons.private, color: 'text-domeo-black', bgColor: 'bg-domeo-gray-100', gradient: 'from-gray-900 to-black' }
 ];
-
-interface Match {
-  id: number;
-  name: string;
-  photo: string;
-  lastMessage: string;
-  time: string;
-  age?: number | string;
-  role?: string;
-  isNew?: boolean;
-  isGroup?: boolean;
-}
-
-// Sample matches data (in real app, would be from API)
-const sampleMatches: Record<DomeType, Match[]> = {
-  connect: [
-    { id: 1, name: 'David', age: 32, photo: '👤', lastMessage: 'Dog park this weekend?', time: '2h ago' },
-    { id: 2, name: 'Michael', age: 30, photo: '👤', lastMessage: 'That hiking trail looks amazing!', time: '5h ago' },
-    { id: 3, name: 'James', age: 34, photo: '👤', lastMessage: 'Just matched!', time: 'Just now', isNew: true }
-  ],
-  explore: [
-    { id: 4, name: 'Jordan & Sam', age: '28 & 30', photo: '👥', lastMessage: 'Dinner Friday?', time: '1h ago' },
-    { id: 5, name: 'Alex', age: 31, photo: '👤', lastMessage: 'Have you read Opening Up?', time: '3h ago' }
-  ],
-  social: [
-    { id: 6, name: 'Priya', age: 31, photo: '👤', lastMessage: 'Wine bar at 7?', time: '30m ago' },
-    { id: 7, name: "Women's Hiking Group", photo: '⛰️', lastMessage: 'Saturday morning hike!', time: '2h ago', isGroup: true }
-  ],
-  professional: [
-    { id: 8, name: 'Alex Kim', role: 'Founder', photo: '👤', lastMessage: 'Coffee Thursday?', time: '4h ago' }
-  ],
-  private: [
-    { id: 9, name: 'Anonymous Match', photo: '🎭', lastMessage: 'Verified ✓', time: '1h ago' }
-  ]
-};
 
 export default function Dashboard() {
   const router = useRouter();
   const [activeDome, setActiveDome] = useState<DomeType>('connect');
-  const [showProfileCompletion, setShowProfileCompletion] = useState(true);
-  
-  const currentDome = domeConfigs.find(d => d.id === activeDome)!;
-  const currentMatches = sampleMatches[activeDome] || [];
+  const [greeting, setGreeting] = useState('');
+  const [profileComplete, setProfileComplete] = useState(60);
 
-  const handleDomeSwitch = (domeId: DomeType) => {
-    setActiveDome(domeId);
-    // In real app: Update URL, load dome-specific data
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour < 12) setGreeting('Good morning');
+    else if (hour < 18) setGreeting('Good afternoon');
+    else setGreeting('Good evening');
+  }, []);
+
+  const currentDome = domes.find(d => d.id === activeDome)!;
+
+  // Sample data - matches original dashboard
+  const stats = {
+    connect: { likes: 12, matches: 3, views: 47 },
+    explore: { connections: 2, interests: 5, events: 3 },
+    social: { friends: 8, events: 2, groups: 3 },
+    professional: { connections: 15, opportunities: 4, views: 23 },
+    private: { messages: 0, views: 0, connections: 0 }
   };
 
-  return (
-    <div className="min-h-screen bg-domeo-gray-50">
-      {/* Dome Switcher - Always Visible */}
-      <div className="bg-white border-b border-domeo-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Logo size="xs" theme="dark" linkToHome={true} />
+  const recentMatches = [
+    { id: 1, name: 'David', age: 32, photo: 'https://i.pravatar.cc/150?img=33', message: 'Dog park this weekend?', time: '2h ago', unread: 2 },
+    { id: 2, name: 'Michael', age: 30, photo: 'https://i.pravatar.cc/150?img=32', message: 'That hiking trail looks amazing!', time: '5h ago', unread: 0 },
+    { id: 3, name: 'James', age: 34, photo: 'https://i.pravatar.cc/150?img=31', message: 'Just matched!', time: 'Just now', unread: 1, isNew: true }
+  ];
 
-            {/* Dome Switcher */}
-            <div className="flex items-center gap-1 bg-domeo-gray-50 rounded-full p-1">
-              {domeConfigs.map((dome) => (
+  const recentActivity = [
+    { id: 1, type: 'like', message: 'Sarah liked your photo', time: '2m ago', icon: '❤️', color: 'bg-pink-100' },
+    { id: 2, type: 'match', message: 'New match with Emma!', time: '1h ago', icon: '✨', color: 'bg-purple-100' },
+    { id: 3, type: 'message', message: 'David sent you a message', time: '2h ago', icon: '💬', color: 'bg-blue-100' }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Modern Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div className="px-4 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo & Greeting */}
+            <div className="flex items-center gap-6">
+              <Link href="/dashboard" className="text-2xl font-extralight tracking-tight text-gray-900">
+                domeo
+              </Link>
+              <span className="hidden lg:block text-sm text-gray-600">
+                {greeting}, Maya
+              </span>
+            </div>
+
+            {/* Desktop Dome Navigation */}
+            <nav className="hidden lg:flex items-center gap-1 bg-gray-100 rounded-xl p-1">
+              {domes.map((dome) => (
                 <button
                   key={dome.id}
-                  onClick={() => handleDomeSwitch(dome.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 ${
-                    activeDome === dome.id
-                      ? 'bg-white shadow-sm'
-                      : 'hover:bg-domeo-gray-100'
+                  onClick={() => setActiveDome(dome.id)}
+                  className={`group relative px-4 py-2.5 rounded-lg transition-all ${
+                    activeDome === dome.id 
+                      ? 'bg-white shadow-sm' 
+                      : 'hover:bg-gray-50'
                   }`}
                 >
-                  <span className={`${activeDome === dome.id ? dome.color : 'text-domeo-gray-500'} transition-colors`}>
-                    {dome.icon}
-                  </span>
-                  <span className={`text-sm font-medium ${
-                    activeDome === dome.id ? 'text-domeo-black' : 'text-domeo-gray-600'
-                  }`}>
-                    {dome.name}
-                  </span>
+                  <div className="flex items-center gap-2.5">
+                    <span className={`text-lg ${activeDome === dome.id ? dome.color : 'text-gray-500'}`}>
+                      {dome.icon}
+                    </span>
+                    <span className={`text-sm font-medium ${
+                      activeDome === dome.id ? 'text-gray-900' : 'text-gray-600'
+                    }`}>
+                      {dome.name}
+                    </span>
+                  </div>
                 </button>
               ))}
-            </div>
+            </nav>
 
-            {/* User Menu */}
-            <div className="flex items-center gap-4">
-              <button className="relative p-2 text-domeo-gray-600 hover:text-domeo-black transition-colors">
+            {/* Actions */}
+            <div className="flex items-center gap-3">
+              <button className="relative p-2 text-gray-600 hover:text-gray-900">
                 <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 2C13.866 2 17 5.13401 17 9C17 12.866 13.866 16 10 16C9.16669 16 8.37488 15.8241 7.65823 15.5053L3 17L4.49467 12.3418C4.17588 11.6251 4 10.8333 4 10C4 6.13401 7.13401 3 11 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M10 18C12.775 18 15 15.825 15.825 13H4.175C5 15.825 7.225 18 10 18ZM4 11H16C16 7.686 13.314 5 10 5C6.686 5 4 7.686 4 11Z" stroke="currentColor" strokeWidth="1.5"/>
                 </svg>
-                <span className="absolute top-1 right-1 w-2 h-2 bg-domeo-accent rounded-full"></span>
+                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-red-500 rounded-full"></span>
               </button>
-              
-              <button className="w-10 h-10 rounded-full bg-domeo-gray-200 flex items-center justify-center text-sm font-medium text-domeo-gray-700">
+              <Link href="/profile" className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-medium">
                 MC
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Dome Pills */}
+        <div className="lg:hidden px-4 pb-3 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-2">
+            {domes.map((dome) => (
+              <button
+                key={dome.id}
+                onClick={() => setActiveDome(dome.id)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-all ${
+                  activeDome === dome.id
+                    ? `bg-gradient-to-r ${dome.gradient} text-white shadow-md`
+                    : 'bg-white border border-gray-200 text-gray-600'
+                }`}
+              >
+                <span className={activeDome === dome.id ? 'text-white' : dome.color}>
+                  {dome.icon}
+                </span>
+                <span className="text-sm font-medium">{dome.name}</span>
               </button>
-            </div>
+            ))}
           </div>
         </div>
+      </header>
 
-        {/* Privacy Notice Bar */}
-        <div className={`${currentDome.bgColor} ${currentDome.borderColor} border-t`}>
-          <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-domeo-gray-600" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2L3 5V9C3 11.5 5 13.5 8 14C11 13.5 13 11.5 13 9V5L8 2Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round"/>
-                <circle cx="8" cy="8" r="1.5" stroke="currentColor" strokeWidth="1"/>
-              </svg>
-              <span className="text-xs text-domeo-gray-600">{currentDome.privacyNote}</span>
-            </div>
-            <Link href="/settings" className="text-xs text-domeo-accent hover:text-domeo-accent/80">
-              Privacy settings →
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content Area */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column - Stats & Actions */}
-          <div className="space-y-6">
-            {/* Profile Completion (Connect dome only) */}
-            {activeDome === 'connect' && showProfileCompletion && (
-              <div className="bg-white rounded-xl border border-domeo-gray-200 p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-sm font-medium text-domeo-black">Complete Your Profile</h3>
-                  <button 
-                    onClick={() => setShowProfileCompletion(false)}
-                    className="text-domeo-gray-400 hover:text-domeo-gray-600"
-                  >
-                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                      <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                  </button>
-                </div>
-                <div className="space-y-3">
+      {/* Main Layout */}
+      <div className="flex flex-col lg:flex-row">
+        {/* Desktop Sidebar / Mobile Cards */}
+        <aside className="w-full lg:w-80 bg-white lg:bg-transparent lg:border-r border-gray-200 lg:min-h-[calc(100vh-73px)]">
+          <div className="p-4 lg:p-6 space-y-6">
+            {/* Profile Completion Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="relative bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-2xl p-6 overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-xl"></div>
+              <div className="relative z-10">
+                <h3 className="text-lg font-semibold mb-2">Complete Your Profile</h3>
+                <p className="text-white/90 text-sm mb-4">Get 5x more matches</p>
+                
+                <div className="space-y-3 mb-5">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                      <svg className="w-4 h-4 text-green-600" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8L6 11L13 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                      </svg>
+                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                      {profileComplete >= 20 ? '✓' : '○'}
                     </div>
-                    <span className="text-sm text-domeo-gray-600">Verified identity</span>
+                    <span className="text-sm">Verified identity</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-domeo-gray-100 flex items-center justify-center">
-                      <span className="text-sm">4/6</span>
+                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                      {profileComplete >= 60 ? '4/6' : '○'}
                     </div>
-                    <span className="text-sm text-domeo-gray-600">Add 2 more photos</span>
+                    <span className="text-sm">Add 2 more photos</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-domeo-gray-100 flex items-center justify-center">
-                      <span className="text-sm">!</span>
+                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                      !
                     </div>
-                    <span className="text-sm text-domeo-gray-600">Write your bio</span>
+                    <span className="text-sm">Write your bio</span>
                   </div>
                 </div>
-                <button className="w-full mt-4 px-4 py-2 bg-domeo-black text-white text-xs font-medium uppercase tracking-wider rounded-lg hover:bg-domeo-charcoal transition-colors">
+
+                <div className="mb-4">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span>Profile Strength</span>
+                    <span>{profileComplete}%</span>
+                  </div>
+                  <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden">
+                    <motion.div 
+                      className="h-full bg-white rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${profileComplete}%` }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                    />
+                  </div>
+                </div>
+                
+                <Link
+                  href="/profile/edit"
+                  className="block text-center py-3 bg-white text-purple-600 font-semibold rounded-xl hover:bg-gray-50 transition-all"
+                >
                   Complete Profile
-                </button>
+                </Link>
               </div>
-            )}
+            </motion.div>
 
-            {/* Quick Stats */}
-            <div className="bg-white rounded-xl border border-domeo-gray-200 p-6">
-              <h3 className="text-sm font-medium text-domeo-black mb-4">{currentDome.name} Activity</h3>
+            {/* Connect Activity Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+            >
+              <h3 className="font-semibold text-gray-900 mb-4">Connect Activity</h3>
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-domeo-gray-600">{currentDome.quickStats.primary.label}</span>
-                  <span className={`text-2xl font-light ${currentDome.color}`}>
-                    {currentDome.quickStats.primary.value}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-domeo-gray-600">{currentDome.quickStats.secondary.label}</span>
-                  <span className="text-2xl font-light text-domeo-gray-700">
-                    {currentDome.quickStats.secondary.value}
-                  </span>
-                </div>
-                <button className={`w-full mt-4 px-4 py-3 ${currentDome.bgColor} ${currentDome.borderColor} border rounded-xl text-sm font-medium ${currentDome.color} hover:bg-opacity-70 transition-all`}>
-                  {currentDome.quickStats.action.label}
-                  {currentDome.quickStats.action.count && (
-                    <span className="ml-2 text-xs opacity-70">({currentDome.quickStats.action.count})</span>
-                  )}
-                </button>
+                {Object.entries(stats[activeDome]).map(([key, value]) => (
+                  <div key={key} className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600 capitalize">{key}</span>
+                    <span className="text-2xl font-light text-gray-900">{value}</span>
+                  </div>
+                ))}
               </div>
-            </div>
+              <Link
+                href="/discover"
+                className={`mt-6 w-full py-3 ${currentDome.bgColor} ${currentDome.color} text-center rounded-xl font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2`}
+              >
+                <span>Discover Singles</span>
+                <span className="text-xs opacity-70">127</span>
+              </Link>
+            </motion.div>
 
-            {/* Dome-Specific Actions */}
-            <div className="bg-white rounded-xl border border-domeo-gray-200 p-6">
-              <h3 className="text-sm font-medium text-domeo-black mb-4">Quick Actions</h3>
+            {/* Quick Actions - Desktop Only */}
+            <div className="hidden lg:block">
+              <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4">
+                Quick Actions
+              </h3>
               <div className="space-y-2">
-                {activeDome === 'connect' && (
-                  <>
-                    <button className="w-full text-left px-4 py-3 hover:bg-domeo-gray-50 rounded-lg transition-colors text-sm">
-                      Update dating preferences →
-                    </button>
-                    <button className="w-full text-left px-4 py-3 hover:bg-domeo-gray-50 rounded-lg transition-colors text-sm">
-                      Boost your profile →
-                    </button>
-                  </>
-                )}
-                {activeDome === 'explore' && (
-                  <>
-                    <button className="w-full text-left px-4 py-3 hover:bg-domeo-gray-50 rounded-lg transition-colors text-sm">
-                      Update kink preferences →
-                    </button>
-                    <button className="w-full text-left px-4 py-3 hover:bg-domeo-gray-50 rounded-lg transition-colors text-sm">
-                      Find ENM events →
-                    </button>
-                  </>
-                )}
-                {activeDome === 'social' && (
-                  <>
-                    <button className="w-full text-left px-4 py-3 hover:bg-domeo-gray-50 rounded-lg transition-colors text-sm">
-                      Browse interest groups →
-                    </button>
-                    <button className="w-full text-left px-4 py-3 hover:bg-domeo-gray-50 rounded-lg transition-colors text-sm">
-                      Create an event →
-                    </button>
-                  </>
-                )}
+                <button className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
+                  Update dating preferences →
+                </button>
+                <button className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
+                  Boost your profile →
+                </button>
               </div>
             </div>
           </div>
+        </aside>
 
-          {/* Center Column - Main Swipe Area */}
-          <div className="lg:col-span-2">
-            <section className="bg-white rounded-xl shadow-sm">
-              <div className="p-6 border-b border-domeo-gray-100">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-medium text-domeo-black">Discover Singles</h2>
-                  <button className="text-sm text-domeo-gray-600 hover:text-domeo-accent">
-                    Filters
-                  </button>
-                </div>
+        {/* Main Content */}
+        <main className="flex-1 p-4 lg:p-8 pb-20 lg:pb-8">
+          <div className="max-w-5xl mx-auto space-y-8">
+            {/* Discover Singles Section */}
+            <section>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl lg:text-2xl font-medium text-gray-900">Discover Singles</h2>
+                <button className="text-sm text-gray-600 hover:text-gray-900">
+                  Filters
+                </button>
               </div>
               
-              <div className="p-6">
-                <SwipeStack dome={activeDome} />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-2xl shadow-sm p-8 lg:p-12 text-center"
+              >
+                <div className={`w-20 h-20 ${currentDome.bgColor} rounded-full flex items-center justify-center mx-auto mb-6`}>
+                  <span className={`text-3xl ${currentDome.color}`}>{currentDome.icon}</span>
+                </div>
+                <p className="text-gray-600 mb-6">Ready to start swiping in {currentDome.name}?</p>
+                <Link
+                  href="/discover"
+                  className="inline-block px-8 py-3 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-800 transition-colors"
+                >
+                  Start Discovering
+                </Link>
+              </motion.div>
+            </section>
+
+            {/* Recent Matches Section */}
+            <section>
+              <h3 className="text-xl font-medium text-gray-900 mb-4">Recent Matches</h3>
+              <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+                {recentMatches.map((match, index) => (
+                  <motion.button
+                    key={match.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => router.push(`/messages/${match.id}`)}
+                    className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0"
+                  >
+                    <div className="relative">
+                      <img 
+                        src={match.photo} 
+                        alt={match.name}
+                        className="w-14 h-14 rounded-full object-cover"
+                      />
+                      {match.isNew && (
+                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-pink-500 rounded-full flex items-center justify-center">
+                          <span className="text-xs text-white">★</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1 text-left">
+                      <p className="font-medium text-gray-900">
+                        {match.name} • {match.age}
+                      </p>
+                      <p className="text-sm text-gray-600 line-clamp-1">{match.message}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-gray-500">{match.time}</p>
+                      {match.unread > 0 && (
+                        <span className="inline-block mt-1 px-2 py-1 bg-pink-500 text-white text-xs rounded-full">
+                          {match.unread}
+                        </span>
+                      )}
+                    </div>
+                  </motion.button>
+                ))}
               </div>
             </section>
 
-            {/* Recent Matches Preview */}
-            {currentMatches.length > 0 && (
-              <div className="mt-6 bg-white rounded-xl shadow-sm p-6">
-                <h3 className="text-sm font-medium text-domeo-gray-700 mb-4">Recent Matches</h3>
-                <div className="space-y-3">
-                  {currentMatches.slice(0, 3).map((match) => (
-                    <div key={match.id} className="flex items-center justify-between p-3 hover:bg-domeo-gray-50 rounded-lg transition-colors cursor-pointer">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-domeo-gray-200 rounded-full flex items-center justify-center text-lg">
-                          {match.photo}
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-domeo-black">
-                            {match.name} {match.age && <span className="font-normal text-domeo-gray-600">• {match.age}</span>}
-                          </p>
-                          <p className="text-xs text-domeo-gray-600">{match.lastMessage}</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-xs text-domeo-gray-500">{match.time}</p>
-                        {match.isNew && (
-                          <span className="inline-block mt-1 w-2 h-2 bg-domeo-accent rounded-full"></span>
-                        )}
-                      </div>
+            {/* Recent Activity - Mobile Shows Less */}
+            <section className="lg:hidden">
+              <h3 className="text-xl font-medium text-gray-900 mb-4">Recent Activity</h3>
+              <div className="space-y-3">
+                {recentActivity.slice(0, 2).map((activity, index) => (
+                  <motion.div
+                    key={activity.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white rounded-xl p-4 shadow-sm flex items-center gap-4"
+                  >
+                    <div className={`w-10 h-10 ${activity.color} rounded-full flex items-center justify-center`}>
+                      <span>{activity.icon}</span>
                     </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">{activity.message}</p>
+                      <p className="text-xs text-gray-500">{activity.time}</p>
+                    </div>
+                    <button className="text-sm text-pink-600 font-medium">View</button>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Desktop Activity Feed & Cards */}
+            <div className="hidden lg:grid lg:grid-cols-3 gap-6">
+              {/* Activity Feed */}
+              <div className="lg:col-span-2">
+                <h3 className="text-xl font-medium text-gray-900 mb-4">Recent Activity</h3>
+                <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+                  {recentActivity.map((activity, index) => (
+                    <motion.div
+                      key={activity.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-100 last:border-0"
+                    >
+                      <div className={`w-12 h-12 ${activity.color} rounded-xl flex items-center justify-center text-xl`}>
+                        {activity.icon}
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-medium text-gray-900">{activity.message}</p>
+                        <p className="text-sm text-gray-500">{activity.time}</p>
+                      </div>
+                      <button className="text-sm text-pink-600 hover:text-pink-700 font-medium">
+                        View
+                      </button>
+                    </motion.div>
                   ))}
                 </div>
               </div>
-            )}
+
+              {/* Side Cards */}
+              <div className="space-y-4">
+                {/* Boost Card */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className={`bg-gradient-to-br ${currentDome.gradient} text-white rounded-2xl p-6`}
+                >
+                  <h4 className="text-lg font-semibold mb-2">Boost Profile</h4>
+                  <p className="text-white/90 text-sm mb-4">Be seen by 10x more people</p>
+                  <button className="w-full py-2.5 bg-white/20 backdrop-blur text-white font-medium rounded-xl hover:bg-white/30 transition-all">
+                    Boost Now
+                  </button>
+                </motion.div>
+
+                {/* Who Likes You */}
+                <div className="bg-white rounded-2xl shadow-sm p-6">
+                  <h4 className="text-lg font-medium text-gray-900 mb-4">Who Likes You</h4>
+                  <div className="flex -space-x-3 mb-4">
+                    {[...Array(4)].map((_, i) => (
+                      <div key={i} className="w-12 h-12 bg-gray-200 rounded-full border-3 border-white"></div>
+                    ))}
+                    <div className="w-12 h-12 bg-gray-100 rounded-full border-3 border-white flex items-center justify-center">
+                      <span className="text-xs font-medium text-gray-600">+8</span>
+                    </div>
+                  </div>
+                  <Link
+                    href="/matches?tab=likes"
+                    className="block text-center py-2.5 bg-gray-900 text-white font-medium rounded-xl hover:bg-gray-800 transition-all"
+                  >
+                    See Who Likes You
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </main>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-domeo-gray-100 py-20 mt-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
-            <div>
-              <Logo theme="dark" size="sm" className="mb-6" linkToHome={true} />
-              <p className="text-[13px] text-domeo-gray-500 leading-relaxed">
-                One profile. Five communities.<br />
-                Endless authentic connections.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Product</h4>
-              <ul className="space-y-3">
-                {['How It Works', 'The Domes', 'Pricing', 'Success Stories'].map(item => (
-                  <li key={item}>
-                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Company</h4>
-              <ul className="space-y-3">
-                {['About Us', 'Careers', 'Press', 'Blog'].map(item => (
-                  <li key={item}>
-                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Trust & Safety</h4>
-              <ul className="space-y-3">
-                {['Safety Center', 'Community Guidelines', 'Privacy Policy', 'Terms of Service'].map(item => (
-                  <li key={item}>
-                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-domeo-gray-100 mt-16 pt-8">
-            <p className="text-[11px] text-domeo-gray-400 text-center tracking-wider uppercase">
-              © 2024 Domeo. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* Mobile Navigation */}
+      <MobileNav />
     </div>
   );
 } 
