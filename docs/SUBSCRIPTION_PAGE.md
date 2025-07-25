@@ -24,9 +24,9 @@ The Subscription page (`/subscription`) provides a comprehensive subscription ma
 - **Price Calculation**: Dynamic pricing based on selected plan and billing period
 
 ### Payment Methods
-- **Credit/Debit Card**: Traditional card payment option
-- **Apple Pay**: Mobile payment integration
-- **Google Pay**: Digital wallet payment option
+- **Credit/Debit Card**: Traditional card payment option with Stripe integration
+- **Apple Pay**: Mobile payment integration with proper SVG logo
+- **Google Pay**: Digital wallet payment option with proper SVG logo
 - **Payment Processing**: Secure payment handling with processing states
 
 ### Pricing Features
@@ -161,9 +161,9 @@ const plans = [
 ## Payment Integration
 
 ### Payment Methods
-- **Credit/Debit Cards**: Traditional payment processing
-- **Apple Pay**: iOS device payment integration
-- **Google Pay**: Android device payment integration
+- **Credit/Debit Cards**: Traditional payment processing with Stripe integration
+- **Apple Pay**: iOS device payment integration with proper SVG logo
+- **Google Pay**: Android device payment integration with proper SVG logo
 - **Secure Processing**: PCI-compliant payment handling
 
 ### Payment Flow

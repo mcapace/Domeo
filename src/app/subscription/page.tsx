@@ -135,9 +135,9 @@ export default function Subscription() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {plans.map((plan) => {
             const price = billingPeriod === 'annual' 
-              ? Math.round(plan.price * 12 * 0.8)
+              ? Math.round(plan.price * 12 * 0.8) 
               : plan.price;
-              
+            
             return (
               <div
                 key={plan.id}
@@ -188,7 +188,7 @@ export default function Subscription() {
                       </p>
                       <div className="mt-2 h-2 bg-domeo-gray-200 rounded-full overflow-hidden">
                         <div 
-                          className="h-full bg-domeo-accent transition-all"
+                          className="h-full bg-domeo-accent transition-all" 
                           style={{ width: '43%' }}
                         />
                       </div>
@@ -239,11 +239,30 @@ export default function Subscription() {
 
             <div className="grid grid-cols-2 gap-4">
               <button className="p-4 border border-domeo-gray-200 rounded-lg hover:border-domeo-gray-300 transition-colors flex items-center justify-center">
-                <span className="text-2xl">🍎</span>
+                <svg className="w-8 h-5" viewBox="0 0 32 20" fill="none">
+                  <rect width="32" height="20" rx="4" fill="#000000"/>
+                  <path d="M8 6.5C8.82843 6.5 9.5 7.17157 9.5 8C9.5 8.82843 8.82843 9.5 8 9.5C7.17157 9.5 6.5 8.82843 6.5 8C6.5 7.17157 7.17157 6.5 8 6.5Z" fill="white"/>
+                  <path d="M8 7.5C8.27614 7.5 8.5 7.72386 8.5 8C8.5 8.27614 8.27614 8.5 8 8.5C7.72386 8.5 7.5 8.27614 7.5 8C7.5 7.72386 7.72386 7.5 8 7.5Z" fill="black"/>
+                  <path d="M12 8.5H10.5V7.5H12C12.2761 7.5 12.5 7.72386 12.5 8C12.5 8.27614 12.2761 8.5 12 8.5Z" fill="white"/>
+                  <path d="M15.5 8.5H14V7.5H15.5C15.7761 7.5 16 7.72386 16 8C16 8.27614 15.7761 8.5 15.5 8.5Z" fill="white"/>
+                  <path d="M19 8.5H17.5V7.5H19C19.2761 7.5 19.5 7.72386 19.5 8C19.5 8.27614 19.2761 8.5 19 8.5Z" fill="white"/>
+                  <path d="M22.5 8.5H21V7.5H22.5C22.7761 7.5 23 7.72386 23 8C23 8.27614 22.7761 8.5 22.5 8.5Z" fill="white"/>
+                  <path d="M26 8.5H24.5V7.5H26C26.2761 7.5 26.5 7.72386 26.5 8C26.5 8.27614 26.2761 8.5 26 8.5Z" fill="white"/>
+                  <path d="M29.5 8.5H28V7.5H29.5C29.7761 7.5 30 7.72386 30 8C30 8.27614 29.7761 8.5 29.5 8.5Z" fill="white"/>
+                </svg>
                 <span className="ml-2 text-domeo-gray-700">Apple Pay</span>
               </button>
               <button className="p-4 border border-domeo-gray-200 rounded-lg hover:border-domeo-gray-300 transition-colors flex items-center justify-center">
-                <span className="text-2xl">🇬</span>
+                <svg className="w-8 h-5" viewBox="0 0 32 20" fill="none">
+                  <rect width="32" height="20" rx="4" fill="#4285F4"/>
+                  <path d="M8 6.5C8.82843 6.5 9.5 7.17157 9.5 8C9.5 8.82843 8.82843 9.5 8 9.5C7.17157 9.5 6.5 8.82843 6.5 8C6.5 7.17157 7.17157 6.5 8 6.5Z" fill="white"/>
+                  <path d="M12 8.5H10.5V7.5H12C12.2761 7.5 12.5 7.72386 12.5 8C12.5 8.27614 12.2761 8.5 12 8.5Z" fill="white"/>
+                  <path d="M15.5 8.5H14V7.5H15.5C15.7761 7.5 16 7.72386 16 8C16 8.27614 15.7761 8.5 15.5 8.5Z" fill="white"/>
+                  <path d="M19 8.5H17.5V7.5H19C19.2761 7.5 19.5 7.72386 19.5 8C19.5 8.27614 19.2761 8.5 19 8.5Z" fill="white"/>
+                  <path d="M22.5 8.5H21V7.5H22.5C22.7761 7.5 23 7.72386 23 8C23 8.27614 22.7761 8.5 22.5 8.5Z" fill="white"/>
+                  <path d="M26 8.5H24.5V7.5H26C26.2761 7.5 26.5 7.72386 26.5 8C26.5 8.27614 26.2761 8.5 26 8.5Z" fill="white"/>
+                  <path d="M29.5 8.5H28V7.5H29.5C29.7761 7.5 30 7.72386 30 8C30 8.27614 29.7761 8.5 29.5 8.5Z" fill="white"/>
+                </svg>
                 <span className="ml-2 text-domeo-gray-700">Google Pay</span>
               </button>
             </div>
@@ -259,6 +278,7 @@ export default function Subscription() {
                 }/mo
               </span>
             </div>
+            
             {selectedPlan === 'founding' && (
               <div className="flex items-center justify-between mb-2">
                 <span className="text-domeo-gray-600">Founding discount</span>
@@ -267,14 +287,14 @@ export default function Subscription() {
                 </span>
               </div>
             )}
+            
             <div className="flex items-center justify-between mb-6 pt-2 border-t border-domeo-gray-100">
               <span className="font-medium text-domeo-black">Total</span>
               <span className="text-xl font-medium text-domeo-black">
                 ${selectedPlan === 'founding' 
                   ? billingPeriod === 'annual' ? '279' : '29'
                   : billingPeriod === 'annual' ? '374' : '39'
-                }
-                {billingPeriod === 'annual' ? '/year' : '/month'}
+                } {billingPeriod === 'annual' ? '/year' : '/month'}
               </span>
             </div>
 
@@ -285,7 +305,7 @@ export default function Subscription() {
             >
               {isProcessing ? 'Processing...' : 'Start Free Trial'}
             </button>
-            
+
             <p className="text-center text-xs text-domeo-gray-500 mt-4">
               Cancel anytime. By subscribing, you agree to our Terms of Service and Privacy Policy.
             </p>
