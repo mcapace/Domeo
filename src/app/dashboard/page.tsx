@@ -884,139 +884,762 @@ export default function Dashboard() {
 
         {/* Main Content */}
         <main className="flex-1 p-4 md:p-8">
-          <div className="max-w-6xl mx-auto space-y-6">
-            {/* Header Section */}
-            <div className="text-center md:text-left">
-              <h1 className="text-2xl md:text-3xl font-light text-domeo-black mb-2">
-                {greeting}, Maya
-              </h1>
-              <p className="text-domeo-gray-600">
-                Here's what's happening in your domes today
-              </p>
-            </div>
+          <div className="max-w-6xl mx-auto space-y-8">
+            
+            {/* EXPLORE DOME LAYOUT */}
+            {activeDome === 'explore' && (
+              <>
+                {/* Explore Header */}
+                <div className="text-center md:text-left">
+                  <h1 className="text-2xl md:text-3xl font-light text-domeo-black mb-2">
+                    Explore Your Boundaries
+                  </h1>
+                  <p className="text-domeo-gray-600">
+                    Safe space for ENM, poly, and alternative relationships
+                  </p>
+                </div>
 
-            {/* Today's Picks - Main Focus */}
-            <section>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl md:text-2xl font-light text-domeo-black">Today's Picks</h2>
-                <Link href="/discover" className="text-sm text-domeo-accent hover:text-domeo-accent/80">
-                  See all →
-                </Link>
-              </div>
+                {/* Safety First Banner */}
+                <motion.div 
+                  className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl p-6 text-white"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-medium mb-2">Consent & Communication Workshop</h3>
+                      <p className="text-white/80 text-sm">Tomorrow at 7PM • Virtual Event</p>
+                    </div>
+                    <button className="px-6 py-3 bg-white/20 backdrop-blur rounded-lg hover:bg-white/30 transition-colors">
+                      RSVP Free
+                    </button>
+                  </div>
+                </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                {todaysPicks.map((pick, index) => (
-                  <motion.div
-                    key={pick.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer"
-                    onClick={() => router.push('/discover')}
-                  >
-                    <div className="relative aspect-[3/4]">
-                      <img 
-                        src={pick.photo} 
-                        alt={pick.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                {/* Experience Level Selector */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm">
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">Your Experience Level</h3>
+                  <div className="grid grid-cols-4 gap-4">
+                    {['Curious', 'Beginner', 'Experienced', 'Expert'].map((level) => (
+                      <button
+                        key={level}
+                        className="p-4 border-2 border-purple-200 rounded-xl hover:border-purple-500 hover:bg-purple-50 transition-all text-center"
+                      >
+                        <span className="text-2xl mb-2 block">
+                          {level === 'Curious' ? '🌱' : level === 'Beginner' ? '🌿' : level === 'Experienced' ? '🌳' : '🏔️'}
+                        </span>
+                        <span className="text-sm font-medium text-gray-700">{level}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Explore Connections Grid */}
+                <section>
+                  <h2 className="text-xl font-medium text-gray-900 mb-6">Explore Connections</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Couples Profile */}
+                    <motion.div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer">
+                      <div className="relative h-64">
+                        <div className="absolute inset-0 grid grid-cols-2">
+                          <img src="https://i.pravatar.cc/300?img=12" className="w-full h-full object-cover" />
+                          <img src="https://i.pravatar.cc/300?img=15" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div className="absolute top-4 left-4 px-3 py-1 bg-purple-500 text-white text-sm rounded-full">
+                          Couple
+                        </div>
+                        <div className="absolute bottom-4 left-4 right-4 text-white">
+                          <h3 className="text-lg font-medium mb-1">Alex & Jordan</h3>
+                          <p className="text-sm text-white/80">Looking for: Third for adventures</p>
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          <span className="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">ENM</span>
+                          <span className="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Experienced</span>
+                          <span className="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">Communicative</span>
+                        </div>
+                        <p className="text-sm text-gray-600">Together 5 years, exploring ethically</p>
+                      </div>
+                    </motion.div>
+
+                    {/* Solo Poly Profile */}
+                    <motion.div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer">
+                      <div className="relative h-64">
+                        <img src="https://i.pravatar.cc/600?img=25" className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div className="absolute top-4 left-4 px-3 py-1 bg-indigo-500 text-white text-sm rounded-full">
+                          Solo Poly
+                        </div>
+                        <div className="absolute bottom-4 left-4 right-4 text-white">
+                          <h3 className="text-lg font-medium mb-1">Sam, 32</h3>
+                          <p className="text-sm text-white/80">Relationship Anarchist</p>
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-full">Autonomous</span>
+                          <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs rounded-full">Kitchen Table</span>
+                        </div>
+                        <p className="text-sm text-gray-600">Building meaningful connections without hierarchy</p>
+                      </div>
+                    </motion.div>
+
+                    {/* Community Event */}
+                    <motion.div className="bg-gradient-to-br from-purple-100 to-indigo-100 rounded-2xl p-6 hover:shadow-xl transition-all cursor-pointer">
+                      <div className="text-center">
+                        <span className="text-5xl mb-4 block">🎭</span>
+                        <h3 className="text-lg font-medium text-gray-900 mb-2">Poly Munch</h3>
+                        <p className="text-sm text-gray-600 mb-4">Monthly community meetup</p>
+                        <div className="space-y-2 text-sm text-gray-700">
+                          <p>📅 First Sunday</p>
+                          <p>👥 20-30 attendees</p>
+                          <p>🏷️ Casual & friendly</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </section>
+
+                {/* Educational Resources */}
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">Learning Paths</h3>
+                    <div className="space-y-3">
+                      {[
+                        { title: 'ENM 101', progress: 100, icon: '📚' },
+                        { title: 'Communication Skills', progress: 60, icon: '💬' },
+                        { title: 'Jealousy Management', progress: 30, icon: '💚' },
+                        { title: 'Boundary Setting', progress: 0, icon: '🛡️' }
+                      ].map((course) => (
+                        <div key={course.title} className="flex items-center gap-4">
+                          <span className="text-2xl">{course.icon}</span>
+                          <div className="flex-1">
+                            <div className="flex justify-between mb-1">
+                              <span className="text-sm font-medium text-gray-700">{course.title}</span>
+                              <span className="text-xs text-gray-500">{course.progress}%</span>
+                            </div>
+                            <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                              <motion.div 
+                                className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full"
+                                initial={{ width: 0 }}
+                                animate={{ width: `${course.progress}%` }}
+                                transition={{ duration: 1 }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <VoiceRooms />
+                </section>
+              </>
+            )}
+
+            {/* SOCIAL DOME LAYOUT */}
+            {activeDome === 'social' && (
+              <>
+                {/* Social Header */}
+                <div className="text-center md:text-left">
+                  <h1 className="text-2xl md:text-3xl font-light text-domeo-black mb-2">
+                    Find Your Tribe
+                  </h1>
+                  <p className="text-domeo-gray-600">
+                    Connect with like-minded people for friendship and activities
+                  </p>
+                </div>
+
+                {/* Activity Mood Matcher */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm">
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">What are you in the mood for?</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    {[
+                      { mood: 'Active', emoji: '🏃‍♀️', color: 'from-orange-500 to-red-500' },
+                      { mood: 'Creative', emoji: '🎨', color: 'from-purple-500 to-pink-500' },
+                      { mood: 'Social', emoji: '🎉', color: 'from-blue-500 to-cyan-500' },
+                      { mood: 'Chill', emoji: '☕', color: 'from-green-500 to-teal-500' },
+                      { mood: 'Adventure', emoji: '🗺️', color: 'from-yellow-500 to-orange-500' }
+                    ].map((activity) => (
+                      <button
+                        key={activity.mood}
+                        className="relative p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 hover:scale-105 transition-transform"
+                      >
+                        <span className="text-4xl mb-2 block">{activity.emoji}</span>
+                        <span className="text-sm font-medium text-gray-700">{activity.mood}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Happening This Week */}
+                <section>
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-xl font-medium text-gray-900">Happening This Week</h2>
+                    <Link href="/social/events" className="text-sm text-blue-600 hover:text-blue-700">
+                      View calendar →
+                    </Link>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Event Cards */}
+                    {[
+                      { 
+                        day: 'Tonight', 
+                        title: 'Board Game Cafe', 
+                        time: '7:00 PM', 
+                        attendees: 8, 
+                        spots: 2,
+                        host: { name: 'Maya', verified: true },
+                        tags: ['Games', 'Casual', 'Beginners Welcome']
+                      },
+                      { 
+                        day: 'Tomorrow', 
+                        title: 'Sunset Hike', 
+                        time: '5:30 PM', 
+                        attendees: 12, 
+                        spots: 0,
+                        host: { name: 'Alex', verified: true },
+                        tags: ['Outdoor', 'Moderate', 'Dogs Welcome']
+                      },
+                      { 
+                        day: 'Saturday', 
+                        title: 'Brunch Club', 
+                        time: '11:00 AM', 
+                        attendees: 6, 
+                        spots: 4,
+                        host: { name: 'Jordan', verified: false },
+                        tags: ['Food', 'Social', 'LGBTQ+ Friendly']
+                      }
+                    ].map((event, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer"
+                      >
+                        <div className="h-32 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                          <div className="text-white text-center">
+                            <p className="text-sm opacity-80">{event.day}</p>
+                            <p className="text-2xl font-medium">{event.time}</p>
+                          </div>
+                        </div>
+                        <div className="p-6">
+                          <h3 className="font-medium text-gray-900 mb-2">{event.title}</h3>
+                          <div className="flex items-center gap-2 mb-3">
+                            <div className="flex items-center gap-1">
+                              <div className="w-6 h-6 bg-gray-200 rounded-full"></div>
+                              <span className="text-sm text-gray-700">{event.host.name}</span>
+                              {event.host.verified && (
+                                <svg className="w-4 h-4 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                                </svg>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {event.tags.map((tag) => (
+                              <span key={tag} className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-gray-600">
+                              {event.attendees} attending
+                            </span>
+                            {event.spots > 0 ? (
+                              <span className="text-sm font-medium text-green-600">{event.spots} spots left</span>
+                            ) : (
+                              <span className="text-sm font-medium text-gray-500">Full</span>
+                            )}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Your Groups */}
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">Your Groups</h3>
+                    <div className="space-y-4">
+                      {[
+                        { name: 'NYC Hikers', members: 234, activity: 'New trail posted', emoji: '🥾' },
+                        { name: 'Book Lovers', members: 89, activity: 'Next book: "Atomic Habits"', emoji: '📚' },
+                        { name: 'Foodies Unite', members: 156, activity: 'Restaurant rec thread', emoji: '🍜' }
+                      ].map((group) => (
+                        <div key={group.name} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                          <div className="flex items-center gap-3">
+                            <span className="text-2xl">{group.emoji}</span>
+                            <div>
+                              <p className="font-medium text-gray-900">{group.name}</p>
+                              <p className="text-sm text-gray-600">{group.members} members</p>
+                            </div>
+                          </div>
+                          <p className="text-xs text-blue-600">{group.activity}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <button className="mt-4 w-full py-2 text-sm text-blue-600 hover:text-blue-700 font-medium">
+                      Discover More Groups →
+                    </button>
+                  </div>
+
+                  {/* Friend Suggestions */}
+                  <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-6 text-white">
+                    <h3 className="text-lg font-medium mb-4">Friend Suggestions</h3>
+                    <div className="space-y-3">
+                      {[
+                        { name: 'Chris', mutual: 5, interests: 'Hiking, Photography' },
+                        { name: 'Taylor', mutual: 3, interests: 'Books, Coffee' },
+                        { name: 'Morgan', mutual: 8, interests: 'Board games, Movies' }
+                      ].map((friend) => (
+                        <div key={friend.name} className="flex items-center justify-between p-3 bg-white/10 rounded-lg backdrop-blur">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-white/20 rounded-full"></div>
+                            <div>
+                              <p className="font-medium">{friend.name}</p>
+                              <p className="text-xs text-white/80">{friend.mutual} mutual friends</p>
+                            </div>
+                          </div>
+                          <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
+                            <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" />
+                            </svg>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              </>
+            )}
+
+            {/* PROFESSIONAL DOME LAYOUT */}
+            {activeDome === 'professional' && (
+              <>
+                {/* Professional Header */}
+                <div className="text-center md:text-left mb-8">
+                  <h1 className="text-2xl md:text-3xl font-light text-domeo-black mb-2">
+                    Expand Your Network
+                  </h1>
+                  <p className="text-domeo-gray-600">
+                    Connect with professionals, find opportunities, grow together
+                  </p>
+                </div>
+
+                {/* Professional Stats Overview */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                  {[
+                    { label: 'Profile Views', value: '127', change: '+12%', icon: '👁️' },
+                    { label: 'Connections', value: '45', change: '+3', icon: '🤝' },
+                    { label: 'Opportunities', value: '8', change: 'New', icon: '💼' },
+                    { label: 'Network Score', value: '92', change: 'High', icon: '📈' }
+                  ].map((stat) => (
+                    <motion.div
+                      key={stat.label}
+                      whileHover={{ scale: 1.05 }}
+                      className="bg-white rounded-xl p-6 shadow-sm text-center"
+                    >
+                      <span className="text-3xl mb-2 block">{stat.icon}</span>
+                      <p className="text-2xl font-light text-gray-900">{stat.value}</p>
+                      <p className="text-sm text-gray-600">{stat.label}</p>
+                      <p className="text-xs text-green-600 mt-1">{stat.change}</p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Featured Opportunities */}
+                <section className="mb-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-xl font-medium text-gray-900">Featured Opportunities</h2>
+                    <Link href="/professional/opportunities" className="text-sm text-gray-700 hover:text-gray-900">
+                      View all →
+                    </Link>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[
+                      {
+                        type: 'Collaboration',
+                        title: 'Looking for Technical Co-founder',
+                        company: 'AI Startup',
+                        poster: 'Sarah Chen',
+                        tags: ['Equity', 'Full-time', 'AI/ML'],
+                        applicants: 12,
+                        hot: true
+                      },
+                      {
+                        type: 'Mentorship',
+                        title: 'Product Design Mentor Available',
+                        company: 'Personal',
+                        poster: 'David Kim',
+                        tags: ['1-on-1', 'Portfolio Review', 'Free'],
+                        applicants: 8,
+                        hot: false
+                      }
+                    ].map((opp, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer border border-gray-100"
+                      >
+                        <div className="flex items-start justify-between mb-4">
+                          <div>
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full font-medium">
+                                {opp.type}
+                              </span>
+                              {opp.hot && (
+                                <span className="px-3 py-1 bg-red-100 text-red-600 text-xs rounded-full font-medium">
+                                  🔥 Hot
+                                </span>
+                              )}
+                            </div>
+                            <h3 className="font-medium text-gray-900 mb-1">{opp.title}</h3>
+                            <p className="text-sm text-gray-600">{opp.company}</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {opp.tags.map((tag) => (
+                            <span key={tag} className="px-2 py-1 bg-gray-50 text-gray-600 text-xs rounded">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        
+                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 bg-gray-200 rounded-full"></div>
+                            <span className="text-sm text-gray-700">{opp.poster}</span>
+                          </div>
+                          <span className="text-sm text-gray-500">{opp.applicants} interested</span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Network Insights & Skills */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Network Map */}
+                  <div className="bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl p-6 text-white">
+                    <h3 className="text-lg font-medium mb-4">Your Network Map</h3>
+                    <div className="relative h-48 flex items-center justify-center">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-32 h-32 border-2 border-white/20 rounded-full flex items-center justify-center">
+                          <div className="w-20 h-20 border-2 border-white/40 rounded-full flex items-center justify-center">
+                            <div className="w-8 h-8 bg-white rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="absolute top-0 left-1/4 w-4 h-4 bg-blue-400 rounded-full"></div>
+                      <div className="absolute bottom-0 right-1/4 w-4 h-4 bg-green-400 rounded-full"></div>
+                      <div className="absolute top-1/2 right-0 w-4 h-4 bg-purple-400 rounded-full"></div>
+                    </div>
+                    <div className="mt-4 space-y-2 text-sm">
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/80">Direct connections</span>
+                        <span className="font-medium">45</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/80">2nd degree</span>
+                        <span className="font-medium">892</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-white/80">Industries</span>
+                        <span className="font-medium">12</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Skills Exchange */}
+                  <div className="bg-white rounded-2xl p-6 shadow-sm">
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">Skills Exchange</h3>
+                    <div className="space-y-4">
+                      <div>
+                        <p className="text-sm font-medium text-gray-700 mb-2">You Offer:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {['UX Design', 'Product Strategy', 'User Research'].map((skill) => (
+                            <span key={skill} className="px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-700 mb-2">You Need:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {['Marketing', 'Sales', 'Fundraising'].map((skill) => (
+                            <span key={skill} className="px-3 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <button className="w-full py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium">
+                        Find Skill Matches →
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* PRIVATE DOME LAYOUT */}
+            {activeDome === 'private' && (
+              <>
+                {/* Private Header */}
+                <div className="text-center mb-8">
+                  <div className="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2L4 7V12C4 16.5 6.5 19.5 12 21C17.5 19.5 20 16.5 20 12V7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                      <path d="M12 11V14M12 8V8.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <h1 className="text-2xl md:text-3xl font-light text-domeo-black mb-2">
+                    Private Mode
+                  </h1>
+                  <p className="text-domeo-gray-600 max-w-md mx-auto">
+                    Complete anonymity. Enhanced privacy. Your secrets are safe here.
+                  </p>
+                </div>
+
+                {/* Privacy Status */}
+                <div className="max-w-2xl mx-auto">
+                  <div className="bg-gray-900 text-white rounded-2xl p-8 mb-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-lg font-medium">Privacy Status</h3>
+                      <span className="px-3 py-1 bg-green-500 text-white text-sm rounded-full">
+                        Active
+                      </span>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-4 bg-white/10 rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <svg className="w-5 h-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                          </svg>
+                          <span>Anonymous Profile Active</span>
+                        </div>
+                        <span className="text-sm text-white/60">No real name shown</span>
+                      </div>
                       
-                      <AICompatibilityEngine match={pick} />
-                      <VoiceIntroPlayer audioUrl={pick.audioUrl} name={pick.name} />
+                      <div className="flex items-center justify-between p-4 bg-white/10 rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <svg className="w-5 h-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                          </svg>
+                          <span>Location Hidden</span>
+                        </div>
+                        <span className="text-sm text-white/60">Using VPN relay</span>
+                      </div>
                       
-                      {/* Subtle AI Indicator */}
-                      <div className="absolute top-3 left-3 w-6 h-6 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1">
-                          <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" stroke="currentColor"/>
-                          <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                      <div className="flex items-center justify-between p-4 bg-white/10 rounded-lg">
+                        <div className="flex items-center gap-3">
+                          <svg className="w-5 h-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+                          </svg>
+                          <span>Auto-Delete Messages</span>
+                        </div>
+                        <span className="text-sm text-white/60">After 24 hours</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Anonymous Connections */}
+                  <div className="bg-white rounded-2xl p-6 shadow-sm mb-8">
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">Anonymous Connections</h3>
+                    <div className="text-center py-12">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-gray-400" viewBox="0 0 24 24" fill="none">
+                          <path d="M12 4V20M4 12H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                         </svg>
                       </div>
-                      
-                      <div className="absolute top-4 right-4 px-3 py-1 bg-green-500 text-white text-sm font-bold rounded-full">
-                        {pick.match}% match
-                      </div>
-
-                      <div className="absolute bottom-20 left-0 right-0 p-6">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-xl font-semibold text-white">
-                            {pick.name}, {pick.age}
-                          </h3>
-                          {pick.verified && (
-                            <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                              <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M8 16L14 22L24 10"/>
-                              </svg>
-                            </div>
-                          )}
-                        </div>
-                        <p className="text-sm text-white/80 mb-3">{pick.location}</p>
-                        <p className="text-sm text-white/90 line-clamp-2">"{pick.prompt}"</p>
-                      </div>
+                      <p className="text-gray-600 mb-6">Start browsing anonymously</p>
+                      <button className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
+                        Browse Private Profiles
+                      </button>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-            </section>
+                  </div>
 
-            {/* Quick Stats Row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <MoodMatcher />
-              <LiveActivityMap />
-              <VoiceRooms />
-            </div>
+                  {/* Privacy Tools */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <button className="p-6 bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all text-left">
+                      <span className="text-3xl mb-3 block">🔐</span>
+                      <h4 className="font-medium text-gray-900 mb-1">Encrypted Chat</h4>
+                      <p className="text-sm text-gray-600">End-to-end encryption for all messages</p>
+                    </button>
+                    
+                    <button className="p-6 bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all text-left">
+                      <span className="text-3xl mb-3 block">⏱️</span>
+                      <h4 className="font-medium text-gray-900 mb-1">Timed Messages</h4>
+                      <p className="text-sm text-gray-600">Messages auto-delete after set time</p>
+                    </button>
+                    
+                    <button className="p-6 bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all text-left">
+                      <span className="text-3xl mb-3 block">👻</span>
+                      <h4 className="font-medium text-gray-900 mb-1">Ghost Mode</h4>
+                      <p className="text-sm text-gray-600">Browse without leaving any trace</p>
+                    </button>
+                    
+                    <button className="p-6 bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all text-left">
+                      <span className="text-3xl mb-3 block">🚫</span>
+                      <h4 className="font-medium text-gray-900 mb-1">Panic Button</h4>
+                      <p className="text-sm text-gray-600">Instantly hide app and clear data</p>
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
 
-            {/* Recent Matches */}
-            <section>
-              <h3 className="text-xl font-light text-domeo-black mb-4">Recent Matches</h3>
-              <div className="bg-white rounded-xl shadow-sm">
-                {recentMatches.map((match, index) => (
-                  <motion.button
-                    key={match.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    onClick={() => router.push(`/messages/${match.id}`)}
-                    className="w-full flex items-center gap-4 p-4 hover:bg-domeo-gray-50 transition-colors border-b border-domeo-gray-100 last:border-0"
-                  >
-                    <div className="relative">
-                      <img src={match.photo} alt={match.name} className="w-14 h-14 rounded-full object-cover" />
-                      {match.isNew && (
-                        <span className="absolute -top-1 -right-1 w-4 h-4 bg-domeo-accent rounded-full flex items-center justify-center">
-                          <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1">
-                            <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" fill="currentColor"/>
-                          </svg>
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center gap-2">
-                        <p className="font-medium text-domeo-black">{match.name}, {match.age}</p>
-                        {match.verified && (
-                          <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
-                            <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M8 16L14 22L24 10"/>
+            {/* CONNECT DOME LAYOUT (Default) */}
+            {activeDome === 'connect' && (
+              <>
+                {/* Connect Header */}
+                <div className="text-center md:text-left">
+                  <h1 className="text-2xl md:text-3xl font-light text-domeo-black mb-2">
+                    {greeting}, Maya
+                  </h1>
+                  <p className="text-domeo-gray-600">
+                    Here's what's happening in your domes today
+                  </p>
+                </div>
+
+                {/* Today's Picks - Main Focus */}
+                <section>
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-xl md:text-2xl font-light text-domeo-black">Today's Picks</h2>
+                    <Link href="/discover" className="text-sm text-domeo-accent hover:text-domeo-accent/80">
+                      See all →
+                    </Link>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    {todaysPicks.map((pick, index) => (
+                      <motion.div
+                        key={pick.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all cursor-pointer"
+                        onClick={() => router.push('/discover')}
+                      >
+                        <div className="relative aspect-[3/4]">
+                          <img 
+                            src={pick.photo} 
+                            alt={pick.name}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                          
+                          <AICompatibilityEngine match={pick} />
+                          <VoiceIntroPlayer audioUrl={pick.audioUrl} name={pick.name} />
+                          
+                          {/* Subtle AI Indicator */}
+                          <div className="absolute top-3 left-3 w-6 h-6 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                            <svg className="w-3 h-3 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1">
+                              <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" stroke="currentColor"/>
+                              <circle cx="16" cy="16" r="2" fill="currentColor"/>
                             </svg>
                           </div>
-                        )}
-                      </div>
-                      <p className="text-sm text-domeo-gray-600">{match.message}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-domeo-gray-500">{match.time}</p>
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
-            </section>
+                          
+                          <div className="absolute top-4 right-4 px-3 py-1 bg-green-500 text-white text-sm font-bold rounded-full">
+                            {pick.match}% match
+                          </div>
 
-            {/* Advanced Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <ARDatePreview match={todaysPicks[0]} />
-              <CompatibilityTimeline match={todaysPicks[0]} />
-              <SmartCalendar />
-              <BiometricSync />
-            </div>
+                          <div className="absolute bottom-20 left-0 right-0 p-6">
+                            <div className="flex items-center gap-2 mb-2">
+                              <h3 className="text-xl font-semibold text-white">
+                                {pick.name}, {pick.age}
+                              </h3>
+                              {pick.verified && (
+                                <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                                  <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M8 16L14 22L24 10"/>
+                                  </svg>
+                                </div>
+                              )}
+                            </div>
+                            <p className="text-sm text-white/80 mb-3">{pick.location}</p>
+                            <p className="text-sm text-white/90 line-clamp-2">"{pick.prompt}"</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Quick Stats Row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <MoodMatcher />
+                  <LiveActivityMap />
+                  <VoiceRooms />
+                </div>
+
+                {/* Recent Matches */}
+                <section>
+                  <h3 className="text-xl font-light text-domeo-black mb-4">Recent Matches</h3>
+                  <div className="bg-white rounded-xl shadow-sm">
+                    {recentMatches.map((match, index) => (
+                      <motion.button
+                        key={match.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        onClick={() => router.push(`/messages/${match.id}`)}
+                        className="w-full flex items-center gap-4 p-4 hover:bg-domeo-gray-50 transition-colors border-b border-domeo-gray-100 last:border-0"
+                      >
+                        <div className="relative">
+                          <img src={match.photo} alt={match.name} className="w-14 h-14 rounded-full object-cover" />
+                          {match.isNew && (
+                            <span className="absolute -top-1 -right-1 w-4 h-4 bg-domeo-accent rounded-full flex items-center justify-center">
+                              <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1">
+                                <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" fill="currentColor"/>
+                              </svg>
+                            </span>
+                          )}
+                        </div>
+                        <div className="flex-1 text-left">
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-domeo-black">{match.name}, {match.age}</p>
+                            {match.verified && (
+                              <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                                <svg className="w-2.5 h-2.5 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M8 16L14 22L24 10"/>
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+                          <p className="text-sm text-domeo-gray-600">{match.message}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xs text-domeo-gray-500">{match.time}</p>
+                        </div>
+                      </motion.button>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Advanced Features Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <ARDatePreview match={todaysPicks[0]} />
+                  <CompatibilityTimeline match={todaysPicks[0]} />
+                  <SmartCalendar />
+                  <BiometricSync />
+                </div>
+              </>
+            )}
+            
           </div>
         </main>
       </div>
