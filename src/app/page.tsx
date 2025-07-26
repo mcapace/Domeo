@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 import Logo from '@/components/Logo';
 import { cn } from '@/lib/utils';
 import { TrustIcons, DomeIcons } from '@/components/DomeIcons';
@@ -52,9 +53,11 @@ export default function Home() {
           </p>
           
           <div className="opacity-0 animate-fade-up animate-delay-600">
-            <button className="px-14 py-5 bg-domeo-black text-white text-[13px] font-normal tracking-[0.2em] uppercase hover:bg-domeo-charcoal transition-all duration-500">
-              Claim Founding Membership
-            </button>
+            <Link href="/auth/signup">
+              <button className="px-14 py-5 bg-domeo-black text-white text-[13px] font-normal tracking-[0.2em] uppercase hover:bg-domeo-charcoal transition-all duration-500">
+                Claim Founding Membership
+              </button>
+            </Link>
           </div>
           
           <div className="mt-8 flex items-center justify-center">
@@ -592,39 +595,30 @@ export default function Home() {
             <div>
               <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Product</h4>
               <ul className="space-y-3">
-                {['How It Works', 'The Domes', 'Pricing', 'Success Stories'].map(item => (
-                  <li key={item}>
-                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
+                <li><Link href="/how-it-works" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">How It Works</Link></li>
+                <li><Link href="/domes" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">The Domes</Link></li>
+                <li><Link href="/subscription" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Pricing</Link></li>
+                <li><Link href="/success-stories" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Success Stories</Link></li>
               </ul>
             </div>
             
             <div>
               <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Company</h4>
               <ul className="space-y-3">
-                {['About Us', 'Careers', 'Press', 'Blog'].map(item => (
-                  <li key={item}>
-                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
+                <li><Link href="/about" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">About Us</Link></li>
+                <li><Link href="/careers" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Careers</Link></li>
+                <li><Link href="/press" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Press</Link></li>
+                <li><Link href="/blog" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Blog</Link></li>
               </ul>
             </div>
             
             <div>
               <h4 className="text-[11px] font-medium tracking-[0.2em] uppercase text-domeo-gray-700 mb-6">Trust & Safety</h4>
               <ul className="space-y-3">
-                {['Safety Center', 'Community Guidelines', 'Privacy Policy', 'Terms of Service'].map(item => (
-                  <li key={item}>
-                    <a href="#" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
+                <li><Link href="/safety" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Safety Center</Link></li>
+                <li><Link href="/guidelines" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Community Guidelines</Link></li>
+                <li><Link href="/privacy" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-[13px] text-domeo-gray-500 hover:text-domeo-black transition-colors">Terms of Service</Link></li>
               </ul>
             </div>
           </div>
