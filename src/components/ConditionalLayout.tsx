@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Navigation from './Navigation';
 import DashboardNavigation from './DashboardNavigation';
+import SimpleDomeNavigation from './SimpleDomeNavigation';
 import ConditionalTrustBar from './ConditionalTrustBar';
 
 export default function ConditionalLayout() {
@@ -10,7 +11,6 @@ export default function ConditionalLayout() {
   
   // Define internal pages that should use dashboard navigation
   const internalPages = [
-    '/dashboard',
     '/messages',
     '/matches', 
     '/profile/edit',
@@ -26,17 +26,38 @@ export default function ConditionalLayout() {
   );
   
   const isDashboard = pathname === '/dashboard';
+  const isLandingPage = pathname === '/';
+  const isDomePage = ['/explore', '/social', '/professional', '/private'].includes(pathname);
 
-  // Don't show any layout for dashboard
+  // Don't show any layout for dashboard (it has its own navigation)
   if (isDashboard) {
     return null;
   }
 
-  // For internal pages, show dashboard navigation but no trust bar or incentive banner
+  // For dome pages, show simple dome navigation
+  if (isDomePage) {
+    return (
+      <>
+        <SimpleDomeNavigation />
+      </>
+    );
+  }
+
+  // For internal pages, show dashboard navigation
   if (isInternalPage) {
     return (
       <>
         <DashboardNavigation />
+      </>
+    );
+  }
+
+  // For landing page, show navigation but no incentive banner
+  if (isLandingPage) {
+    return (
+      <>
+        <Navigation />
+        <ConditionalTrustBar />
       </>
     );
   }

@@ -31,18 +31,20 @@ export default function Logo({
   
   // Fallback text logo with sophisticated monochrome design
   const textLogo = (
-    <div className={`relative ${className}`}>
-      <span className={`${currentSize.text} font-extralight tracking-[-0.03em] ${
-        theme === 'light' ? 'text-white' : 'text-domeo-black'
-      }`}>
-        domeo
-      </span>
-      {/* Simple dot instead of arch */}
-      <div className="absolute -top-1 -right-3 w-2 h-2 bg-domeo-accent rounded-full"></div>
-    </div>
+    <span className={`${currentSize.text} font-extralight tracking-[-0.03em] ${
+      theme === 'light' ? 'text-white' : 'text-domeo-black'
+    }`}>
+      domeo
+    </span>
   );
   
-  const logoElement = imageError ? textLogo : (
+  // Only render one logo element - either image or text fallback
+  const logoContent = imageError ? (
+    <div className={`relative ${className}`}>
+      {textLogo}
+      <div className="absolute -top-1 -right-3 w-2 h-2 bg-domeo-accent rounded-full"></div>
+    </div>
+  ) : (
     <Image
       src={logoSrc}
       alt="Domeo"
@@ -57,10 +59,10 @@ export default function Logo({
   if (linkToHome) {
     return (
       <Link href="/" className="inline-block">
-        {logoElement}
+        {logoContent}
       </Link>
     );
   }
 
-  return logoElement;
+  return logoContent;
 } 

@@ -37,7 +37,9 @@ export default function Home() {
         
         <div className="w-full max-w-5xl mx-auto text-center relative z-10">
           <div className="mb-20 opacity-0 animate-fade-in">
-            <Logo size="xl" className="mx-auto" linkToHome={false} />
+            <div className="flex justify-center">
+              <Logo size="xl" className="mx-auto" linkToHome={false} />
+            </div>
           </div>
           
           <h1 className="text-[3.5rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[8rem] font-extralight text-domeo-black tracking-[-0.04em] leading-[0.85] mb-12 opacity-0 animate-fade-up animate-delay-200">

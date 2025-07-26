@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { DomeIcons } from '@/components/DomeIcons';
 import Logo from '@/components/Logo';
 
@@ -17,6 +17,7 @@ interface DomeConfig {
   bgColor: string;
   borderColor: string;
   privacyNote: string;
+  path: string;
 }
 
 const domeConfigs: DomeConfig[] = [
@@ -28,7 +29,8 @@ const domeConfigs: DomeConfig[] = [
     color: 'text-pink-600',
     bgColor: 'bg-pink-50',
     borderColor: 'border-pink-200',
-    privacyNote: 'Your dating profile is separate from other domes'
+    privacyNote: 'Your dating profile is separate from other domes',
+    path: '/dashboard'
   },
   {
     id: 'explore',
@@ -38,7 +40,8 @@ const domeConfigs: DomeConfig[] = [
     color: 'text-purple-600',
     bgColor: 'bg-purple-50',
     borderColor: 'border-purple-200',
-    privacyNote: 'Your kinks & preferences stay in Explore'
+    privacyNote: 'Your kinks & preferences stay in Explore',
+    path: '/explore'
   },
   {
     id: 'social',
@@ -48,7 +51,8 @@ const domeConfigs: DomeConfig[] = [
     color: 'text-blue-600',
     bgColor: 'bg-blue-50',
     borderColor: 'border-blue-200',
-    privacyNote: 'Platonic connections only in this dome'
+    privacyNote: 'Platonic connections only in this dome',
+    path: '/social'
   },
   {
     id: 'professional',
@@ -58,7 +62,8 @@ const domeConfigs: DomeConfig[] = [
     color: 'text-gray-700',
     bgColor: 'bg-gray-50',
     borderColor: 'border-gray-300',
-    privacyNote: 'Professional info only - no personal dome data'
+    privacyNote: 'Professional info only - no personal dome data',
+    path: '/professional'
   },
   {
     id: 'private',
@@ -68,7 +73,8 @@ const domeConfigs: DomeConfig[] = [
     color: 'text-white',
     bgColor: 'bg-domeo-gray-900',
     borderColor: 'border-domeo-gray-700',
-    privacyNote: 'Anonymous mode - enhanced privacy active'
+    privacyNote: 'Anonymous mode - enhanced privacy active',
+    path: '/private'
   }
 ];
 
@@ -77,16 +83,26 @@ interface DashboardNavigationProps {
   onDomeSwitch?: (domeId: DomeType) => void;
 }
 
-export default function DashboardNavigation({ activeDome = 'connect', onDomeSwitch }: DashboardNavigationProps) {
+export default function DashboardNavigation({ activeDome, onDomeSwitch }: DashboardNavigationProps) {
   const router = useRouter();
-  const currentDome = domeConfigs.find(d => d.id === activeDome)!;
+  const pathname = usePathname();
+  
+  // Determine active dome based on current pathname if not provided
+  const currentActiveDome = activeDome || 
+    domeConfigs.find(d => d.path === pathname)?.id || 
+    (pathname === '/dashboard' ? 'connect' : 'connect');
+  
+  const currentDome = domeConfigs.find(d => d.id === currentActiveDome)!;
 
   const handleDomeSwitch = (domeId: DomeType) => {
     if (onDomeSwitch) {
       onDomeSwitch(domeId);
     } else {
-      // Default behavior: navigate to dashboard with the selected dome
-      router.push(`/dashboard?dome=${domeId}`);
+      // Navigate to the appropriate page for each dome
+      const targetDome = domeConfigs.find(d => d.id === domeId);
+      if (targetDome) {
+        router.push(targetDome.path);
+      }
     }
   };
 
@@ -104,16 +120,16 @@ export default function DashboardNavigation({ activeDome = 'connect', onDomeSwit
                 key={dome.id}
                 onClick={() => handleDomeSwitch(dome.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 ${
-                  activeDome === dome.id
+                  currentActiveDome === dome.id
                     ? 'bg-white shadow-sm'
                     : 'hover:bg-domeo-gray-100'
                 }`}
               >
-                <span className={`${activeDome === dome.id ? dome.color : 'text-domeo-gray-500'} transition-colors`}>
+                <span className={`${currentActiveDome === dome.id ? dome.color : 'text-domeo-gray-500'} transition-colors`}>
                   {dome.icon}
                 </span>
                 <span className={`text-sm font-medium ${
-                  activeDome === dome.id ? 'text-domeo-black' : 'text-domeo-gray-600'
+                  currentActiveDome === dome.id ? 'text-domeo-black' : 'text-domeo-gray-600'
                 }`}>
                   {dome.name}
                 </span>

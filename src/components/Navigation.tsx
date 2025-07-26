@@ -24,7 +24,9 @@ export default function Navigation() {
     )}>
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-[72px]">
-          <Logo size="xs" theme="dark" />
+          <div className="flex-shrink-0">
+            <Logo size="xs" theme="dark" />
+          </div>
           
           <div className="hidden md:flex items-center gap-10">
             <Link 

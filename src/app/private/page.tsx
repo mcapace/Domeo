@@ -1,164 +1,260 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import Logo from '@/components/Logo';
-import { DomeIcons } from '@/components/DomeIcons';
 
 export default function Private() {
-  const [activeTab, setActiveTab] = useState('anonymous');
-
   return (
-    <div className="min-h-screen bg-domeo-gray-900">
-      {/* Header */}
-      <header className="bg-domeo-charcoal border-b border-domeo-gray-700">
-        <div className="px-4 md:px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/dashboard">
-              <Logo size="xs" theme="light" linkToHome={false} />
-            </Link>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-white">
-                  {DomeIcons.private}
-                </span>
-                <h1 className="text-xl font-light text-white">Private</h1>
-              </div>
-            </div>
-            <div className="w-20"></div> {/* Spacer for centering */}
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-gray-900 pt-20">
       <div className="max-w-6xl mx-auto p-4 md:p-8">
         {/* Hero Section */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-light text-white mb-4">Your Secrets, Protected</h2>
-          <p className="text-domeo-gray-300 max-w-2xl mx-auto">
-            Connect discreetly with enhanced privacy controls. Your activity in Private 
-            is completely anonymous and separate from other domes.
+          <h2 className="text-3xl font-light text-white mb-4">Private Mode</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Connect anonymously and securely. Your privacy is our priority.
           </p>
         </div>
 
-        {/* Privacy Notice */}
-        <div className="bg-domeo-gray-800 rounded-2xl p-6 mb-8 border border-domeo-gray-700">
-          <div className="flex items-start gap-4">
-            <div className="w-8 h-8 bg-red-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-              <svg className="w-4 h-4 text-red-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1">
-                <path d="M10 2L3 5V9C3 11.5 5 13.5 10 14C15 13.5 17 11.5 17 9V5L10 2Z" stroke="currentColor"/>
-                <circle cx="10" cy="10" r="1.5" stroke="currentColor"/>
-              </svg>
+        {/* Privacy Status */}
+        <div className="bg-gray-800 rounded-2xl p-6 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-medium text-white">Privacy Status</h3>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-green-400">Secure</span>
             </div>
-            <div>
-              <h3 className="font-medium text-white mb-2">Enhanced Privacy Active</h3>
-              <p className="text-sm text-domeo-gray-300">
-                Your profile in Private is completely anonymous. No personal information is shared, 
-                and your activity is not visible to other domes or your contacts.
-              </p>
-            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { 
+                feature: 'End-to-End Encryption', 
+                status: 'Active', 
+                icon: (
+                  <svg className="w-8 h-8 text-green-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor"/>
+                    <path d="M12 8V6C12 4.89543 12.8954 4 14 4H18C19.1046 4 20 4.89543 20 6V8" stroke="currentColor"/>
+                    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                  </svg>
+                )
+              },
+              { 
+                feature: 'Anonymous Mode', 
+                status: 'Enabled', 
+                icon: (
+                  <svg className="w-8 h-8 text-blue-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <circle cx="16" cy="12" r="6" stroke="currentColor"/>
+                    <path d="M8 24C8 20.6863 10.6863 18 14 18H18C21.3137 18 24 20.6863 24 24" stroke="currentColor" strokeLinecap="round"/>
+                    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                  </svg>
+                )
+              },
+              { 
+                feature: 'No Data Tracking', 
+                status: 'Confirmed', 
+                icon: (
+                  <svg className="w-8 h-8 text-red-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <circle cx="16" cy="16" r="14" stroke="currentColor"/>
+                    <path d="M8 8L24 24" stroke="currentColor" strokeLinecap="round"/>
+                    <path d="M24 8L8 24" stroke="currentColor" strokeLinecap="round"/>
+                  </svg>
+                )
+              }
+            ].map((item) => (
+              <div key={item.feature} className="bg-gray-700 rounded-xl p-4">
+                <div className="flex items-center gap-3 mb-2">
+                  {item.icon}
+                  <span className="text-sm font-medium text-white">{item.feature}</span>
+                </div>
+                <p className="text-xs text-green-400">{item.status}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="bg-domeo-gray-800 rounded-2xl shadow-sm mb-8 border border-domeo-gray-700">
-          <div className="border-b border-domeo-gray-700">
-            <div className="flex space-x-8 px-6">
-              {['anonymous', 'connections', 'settings', 'safety'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors capitalize ${
-                    activeTab === tab
-                      ? 'border-white text-white'
-                      : 'border-transparent text-domeo-gray-400 hover:text-domeo-gray-200'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Tab Content */}
-          <div className="p-6">
-            {activeTab === 'anonymous' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-medium text-white">Anonymous Connections</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-domeo-gray-700 rounded-xl p-6 text-center border border-domeo-gray-600">
-                    <div className="w-12 h-12 bg-domeo-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-6 h-6 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1">
-                        <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" stroke="currentColor"/>
-                        <circle cx="16" cy="16" r="2" fill="currentColor"/>
-                      </svg>
-                    </div>
-                    <h4 className="font-medium text-white mb-2">No Photos</h4>
-                    <p className="text-sm text-domeo-gray-300">Connect without sharing your identity</p>
+        {/* Anonymous Connections */}
+        <div className="bg-gray-800 rounded-2xl p-6 mb-8">
+          <h3 className="text-lg font-medium text-white mb-6">Anonymous Connections</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                alias: 'Shadow',
+                interests: ['Privacy', 'Technology', 'Philosophy'],
+                compatibility: '94%',
+                lastSeen: '2 hours ago',
+                icon: (
+                  <svg className="w-8 h-8 text-gray-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" stroke="currentColor"/>
+                    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                  </svg>
+                )
+              },
+              {
+                alias: 'Echo',
+                interests: ['Art', 'Music', 'Travel'],
+                compatibility: '87%',
+                lastSeen: '1 day ago',
+                icon: (
+                  <svg className="w-8 h-8 text-blue-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" stroke="currentColor"/>
+                    <circle cx="16" cy="16" r="3" fill="currentColor"/>
+                  </svg>
+                )
+              },
+              {
+                alias: 'Phoenix',
+                interests: ['Writing', 'Nature', 'Meditation'],
+                compatibility: '91%',
+                lastSeen: 'Online now',
+                icon: (
+                  <svg className="w-8 h-8 text-orange-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M16 2L20 10L28 12L20 14L16 22L12 14L4 12L12 10L16 2Z" stroke="currentColor"/>
+                    <circle cx="16" cy="16" r="3" fill="currentColor"/>
+                  </svg>
+                )
+              }
+            ].map((profile) => (
+              <div key={profile.alias} className="bg-gray-700 rounded-xl p-6 hover:bg-gray-600 transition-colors cursor-pointer">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center">
+                    {profile.icon}
                   </div>
-                  
-                  <div className="bg-domeo-gray-700 rounded-xl p-6 text-center border border-domeo-gray-600">
-                    <div className="w-12 h-12 bg-domeo-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-6 h-6 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1">
-                        <path d="M8 16L14 22L24 10" stroke="currentColor"/>
-                      </svg>
-                    </div>
-                    <h4 className="font-medium text-white mb-2">Verified Anonymously</h4>
-                    <p className="text-sm text-domeo-gray-300">Real people, anonymous profiles</p>
-                  </div>
-                  
-                  <div className="bg-domeo-gray-700 rounded-xl p-6 text-center border border-domeo-gray-600">
-                    <div className="w-12 h-12 bg-domeo-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-6 h-6 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1">
-                        <path d="M10 2L3 5V9C3 11.5 5 13.5 10 14C15 13.5 17 11.5 17 9V5L10 2Z" stroke="currentColor"/>
-                        <circle cx="10" cy="10" r="1.5" stroke="currentColor"/>
-                      </svg>
-                    </div>
-                    <h4 className="font-medium text-white mb-2">Enhanced Privacy</h4>
-                    <p className="text-sm text-domeo-gray-300">Maximum privacy controls active</p>
+                  <div>
+                    <h4 className="font-medium text-white">{profile.alias}</h4>
+                    <p className="text-sm text-gray-400">{profile.lastSeen}</p>
                   </div>
                 </div>
-              </div>
-            )}
-
-            {activeTab === 'connections' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-medium text-white">Your Connections</h3>
-                <p className="text-domeo-gray-300">Manage your anonymous connections in Private.</p>
-                <div className="bg-domeo-gray-700 rounded-xl p-6 border border-domeo-gray-600">
-                  <p className="text-sm text-domeo-gray-300">Connection features coming soon...</p>
+                
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-gray-400">Compatibility</span>
+                    <span className="text-sm font-medium text-green-400">{profile.compatibility}</span>
+                  </div>
+                  <div className="w-full bg-gray-600 rounded-full h-2">
+                    <div 
+                      className="bg-green-500 h-2 rounded-full" 
+                      style={{ width: profile.compatibility }}
+                    ></div>
+                  </div>
+                </div>
+                
+                <div className="flex flex-wrap gap-2">
+                  {profile.interests.map((interest) => (
+                    <span key={interest} className="px-2 py-1 bg-gray-600 text-gray-300 text-xs rounded-full">
+                      {interest}
+                    </span>
+                  ))}
                 </div>
               </div>
-            )}
-
-            {activeTab === 'settings' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-medium text-white">Privacy Settings</h3>
-                <p className="text-domeo-gray-300">Configure your anonymous profile settings.</p>
-                <div className="bg-domeo-gray-700 rounded-xl p-6 border border-domeo-gray-600">
-                  <p className="text-sm text-domeo-gray-300">Privacy settings coming soon...</p>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'safety' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-medium text-white">Safety & Guidelines</h3>
-                <p className="text-domeo-gray-300">Learn about safety practices for anonymous connections.</p>
-                <div className="bg-domeo-gray-700 rounded-xl p-6 border border-domeo-gray-600">
-                  <p className="text-sm text-domeo-gray-300">Safety guidelines coming soon...</p>
-                </div>
-              </div>
-            )}
+            ))}
           </div>
         </div>
 
-        {/* Back to Dashboard */}
-        <div className="text-center">
-          <Link href="/dashboard">
-            <button className="px-6 py-3 bg-white text-domeo-black rounded-lg hover:bg-domeo-gray-100 transition-colors">
-              Back to Dashboard
-            </button>
-          </Link>
+        {/* Privacy Features */}
+        <div className="bg-gray-800 rounded-2xl p-6 mb-8">
+          <h3 className="text-lg font-medium text-white mb-6">Privacy Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                title: 'Anonymous Messaging',
+                description: 'Send messages without revealing your identity',
+                icon: (
+                  <svg className="w-8 h-8 text-blue-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M4 8L16 16L28 8" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor"/>
+                    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                  </svg>
+                )
+              },
+              {
+                title: 'Secure Voice Calls',
+                description: 'End-to-end encrypted voice communication',
+                icon: (
+                  <svg className="w-8 h-8 text-green-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M16 8V16L20 20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="16" cy="16" r="14" stroke="currentColor"/>
+                  </svg>
+                )
+              },
+              {
+                title: 'No Profile Photos',
+                description: 'Connect based on interests, not appearance',
+                icon: (
+                  <svg className="w-8 h-8 text-purple-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <circle cx="16" cy="12" r="6" stroke="currentColor"/>
+                    <path d="M8 24C8 20.6863 10.6863 18 14 18H18C21.3137 18 24 20.6863 24 24" stroke="currentColor" strokeLinecap="round"/>
+                    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                  </svg>
+                )
+              },
+              {
+                title: 'Auto-Delete Messages',
+                description: 'Messages disappear after 24 hours',
+                icon: (
+                  <svg className="w-8 h-8 text-red-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M16 4L20 12L28 16L20 20L16 28L12 20L4 16L12 12L16 4Z" stroke="currentColor"/>
+                    <circle cx="16" cy="16" r="3" fill="currentColor"/>
+                  </svg>
+                )
+              }
+            ].map((feature) => (
+              <div key={feature.title} className="bg-gray-700 rounded-xl p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  {feature.icon}
+                  <h4 className="font-medium text-white">{feature.title}</h4>
+                </div>
+                <p className="text-sm text-gray-400">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Privacy Guidelines */}
+        <div className="bg-gray-800 rounded-2xl p-6">
+          <h3 className="text-lg font-medium text-white mb-4">Privacy Guidelines</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'Stay Anonymous',
+                description: 'Never share personal identifying information',
+                icon: (
+                  <svg className="w-8 h-8 text-blue-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <circle cx="16" cy="12" r="6" stroke="currentColor"/>
+                    <path d="M8 24C8 20.6863 10.6863 18 14 18H18C21.3137 18 24 20.6863 24 24" stroke="currentColor" strokeLinecap="round"/>
+                    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                  </svg>
+                )
+              },
+              {
+                title: 'Trust Your Instincts',
+                description: 'If something feels off, trust your gut',
+                icon: (
+                  <svg className="w-8 h-8 text-green-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M8 16L14 22L24 10" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="16" cy="16" r="14" stroke="currentColor"/>
+                  </svg>
+                )
+              },
+              {
+                title: 'Respect Boundaries',
+                description: 'Always ask before sharing sensitive topics',
+                icon: (
+                  <svg className="w-8 h-8 text-purple-400" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor"/>
+                    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+                  </svg>
+                )
+              }
+            ].map((item) => (
+              <div key={item.title} className="text-center">
+                <div className="flex justify-center mb-3">
+                  {item.icon}
+                </div>
+                <h4 className="font-medium text-white mb-2">{item.title}</h4>
+                <p className="text-sm text-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
